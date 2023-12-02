@@ -4,7 +4,7 @@
 
 - [Anotações](anotacoes.md)
 - [Modelo descritivo Farmácia](modelo_descritivo_farmacia.md)
-
+- [Normalização de Banco de Dados](normalizacao_bd.md)
 
 
 ------------

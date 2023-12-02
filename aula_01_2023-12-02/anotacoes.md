@@ -8,6 +8,7 @@
 - Modelo descritivo - Não técnico 
     * Cliente / Usuário
 
+  
 ## Diagrama de entidade-relacionamento (DER)
 
 Um diagrama entidade-relacionamento (DER) é uma forma de representar graficamente a estrutura lógica de um banco de dados, mostrando as entidades, os atributos e os relacionamentos entre elas. Existem diferentes ferramentas que podem ajudar você a criar um DER, como o Microsoft Word, o Microsoft Visio, o GitMind e o Lucidchart. Cada ferramenta tem suas próprias características e vantagens, mas o processo básico é semelhante. Veja a seguir alguns passos comuns para criar um DER:
