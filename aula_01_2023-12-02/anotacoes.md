@@ -57,11 +57,17 @@ Referenca.:
 4. [O que e uma entidade em um banco de dados? -ConselhosRapidos](https://conselhosrapidos.com.br/o-que-e-uma-entidade-em-um-banco-de-dados/)
 5. [Capítulo 2 Modelo Entidade - UFSC](http://www.inf.ufsc.br/~mario/cap2texto.pdf)
 
+
+## Fotos da Aula
+
+![](./img/foto_quadro.jpg)
+
 ## Conteúdo Extra
 
 * [Dados, Informação, Conhecimento, Ideia e Sabedoria](https://mobimais.com.br/blog/dados-informacao-conhecimento-ideia-e-sabedoria/)
 
 * [Livro: Projeto de banco de dados](./doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
+* [Abordagem Entidade-relacionamento](https://sites.unipampa.edu.br/cienciacao/2021/03/15/abordagem-entidade-relacionamento-er/)
 
 ------------
 
