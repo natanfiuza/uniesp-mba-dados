@@ -59,14 +59,10 @@ Referenca.:
 
 ## Conteúdo Extra
 
-[Dados, Informação, Conhecimento, Ideia e Sabedoria](https://mobimais.com.br/blog/dados-informacao-conhecimento-ideia-e-sabedoria/)
+* [Dados, Informação, Conhecimento, Ideia e Sabedoria](https://mobimais.com.br/blog/dados-informacao-conhecimento-ideia-e-sabedoria/)
 
-
-
-
-
-[Livro: Projeto de banco de dados](./doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
+* [Livro: Projeto de banco de dados](./doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
 
 ------------
 
-[Inicio](../README.md)
+[Home](../README.md) | [Indice](README.md)
