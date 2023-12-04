@@ -62,6 +62,7 @@ Referenca.:
 ## Fotos da Aula
 
 ![](./img/foto_quadro.jpg)
+![](./img/2023-12-02_16.47.26_d2a2864d.jpg)
 
 ## Conteúdo Extra
 
@@ -69,7 +70,10 @@ Referenca.:
 
 * [Livro: Projeto de banco de dados](./doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
 * [Abordagem Entidade-relacionamento](https://sites.unipampa.edu.br/cienciacao/2021/03/15/abordagem-entidade-relacionamento-er/)
+* [Livro: MySql Comece com o principal banco de dados open source do mercado](./doc/mysql-Comece-com-o-principal-banco-de-dados-open-source-do-mercado.pdf)
+* [Livro: Postgresql - Banco de Dados Para Aplicacoes Web Modernas - Casa Do Codigo](./doc/Postgresql-Banco-de-Dados-Para-Aplicacoes-Web-Modernas-Casa-Do-Codigo.pdf)
+* [Livro: PLSQL Domine a linguagem do banco de dados Oracle](./doc/PLSQL-Domine-a-linguagem-do-banco-de-dados-Oracle.pdf)
 
 ------------
 
-[Home](../README.md) | [Indice](README.md)
+[Home 🏠](../README.md) | [Indice 📇](README.md)

@@ -50,4 +50,4 @@ Por fim, é preciso registrar os dados das entregas dos pedidos/vendas, informan
 
 ------------
 
-[Home](../README.md) | [Indice](README.md)
+[Home 🏠](../README.md) | [Indice 📇](README.md)
