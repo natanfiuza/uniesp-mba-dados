@@ -79,12 +79,63 @@ Nessas tabelas, todos os atributos não primários dependem totalmente da chave 
 
 Finalmente, para a terceira forma normal, devemos eliminar as dependências transitivas dos atributos não primários
 
-Referencias:
+## Beneficios
+
+A normalização de banco de dados oferece diversos benefícios, tais como:
+
+1. **Redução de Redundância**: A normalização elimina a repetição desnecessária de dados, o que reduz o espaço de armazenamento e evita a inconsistência dos dados.
+
+2. **Integridade de Dados**: Ao seguir as regras de normalização, a integridade dos dados é mantida e a probabilidade de ocorrerem inconsistências é reduzida.
+
+3. **Melhor Desempenho de Consulta**: Um banco de dados normalizado pode ter um desempenho de consulta melhor, pois as tabelas são organizadas de forma eficiente e as operações são mais eficientes.
+
+4. **Facilidade de Manutenção**: Um banco de dados normalizado é mais fácil de manter e atualizar, já que as informações estão organizadas e relacionadas de maneira lógica.
+
+5. **Flexibilidade e Escalabilidade**: A normalização garante que o banco de dados seja mais flexível e escalável, facilitando a adição de novos dados e a modificação da estrutura do banco de dados.
+
+Em resumo, a normalização de banco de dados é essencial para garantir a integridade, eficiência e flexibilidade dos sistemas de gerenciamento de dados, proporcionando uma série de benefícios importantes para a gestão de dados.
+
+## Desvantagens
+
+Embora a normalização de banco de dados ofereça muitos benefícios, ela também apresenta algumas desvantagens, tais como:
+
+1. **Desempenho**: A normalização pode afetar o desempenho do banco de dados, especialmente em grandes bancos de dados, devido ao aumento do número de tabelas e relações.
+
+2. **Complexidade**: A normalização pode tornar o banco de dados mais complexo e difícil de entender, especialmente para usuários que não estão familiarizados com o modelo relacional.
+
+3. **Custo de Armazenamento**: A normalização pode aumentar o custo de armazenamento, pois pode ser necessário armazenar mais tabelas e relações.
+
+4. **Dificuldade de Modificação**: A normalização pode tornar a modificação do banco de dados mais difícil, pois pode ser necessário modificar várias tabelas e relações.
+
+5. **Requer Análise Detalhada**: A normalização requer uma análise detalhada do banco de dados e pode ser um processo complexo e demorado.
+
+Em resumo, a normalização de banco de dados pode apresentar algumas desvantagens, como o aumento do custo de armazenamento e a complexidade do banco de dados. No entanto, essas desvantagens podem ser minimizadas com um planejamento cuidadoso e uma análise detalhada do banco de dados.
+
+## Manutenção do banco de dados
+
+A normalização de banco de dados afeta positivamente a simplicidade das operações de manutenção. Ao manter um banco de dados normalizado, as operações de atualização e modificação são simplificadas, pois as alterações precisam ser feitas em um único local, evitando a propagação de alterações em várias tabelas. Isso reduz a probabilidade de erros e torna a manutenção do banco de dados mais eficiente e menos propensa a inconsistências. Portanto, a normalização contribui para a integridade e a qualidade dos dados, facilitando as operações de manutenção e garantindo que o banco de dados seja mais fácil de gerenciar e entender.
+
+
+## Referencias:
 1. [Normalização de banco de dados: o que é e como fazer](https://platzi.com.br/blog/normalizacao-de-banco-de-dados/)
 2. [Normalização em Banco de Dados - Estrutura | Alura](https://www.alura.com.br/artigos/normalizacao-banco-de-dados-estrutura)
 3. [Descrição da normalização do banco de dados - Microsoft 365 Apps](https://learn.microsoft.com/pt-br/office/troubleshoot/access/database-normalization-description)
 4. [Normalização de Bancos de Dados: Explicação e Benefícios](https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/)
-
+5. [Normalização de Banco de Dados: Por que Organização é Fundamental](https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental)
+6. [Normalização de Bancos de Dados: Explicação e Benefícios](https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/)
+7. [O que é a normalização de bases de dados e como fazê-la?](https://ebaconline.com.br/blog/normalizacao-de-bases-de-dados)
+8. [O que é normalização em um banco de dados, e por que é tão importante?](https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni)
+9. [Descrição das noções básicas de normalização do banco de dados](https://learn.microsoft.com/pt-br/office/troubleshoot/access/database-normalization-description)
+10. https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais
+11. http://ptcomputador.com/Software/database-software/113954.html
+12. https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/
+13. https://www.ehow.com.br/vantagens-desvantagens-normalizar-base-dados-info_38217/
+14. https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental
+15. https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental
+16. https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/
+17. http://ptcomputador.com/Software/database-software/113954.html
+18. https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni
+19. https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais
 
 ----------
 
