@@ -8,6 +8,12 @@ A segunda forma normal (2FN) exige que todos os atributos não primários de uma
 
 A terceira forma normal (3FN) exige que todos os atributos não primários de uma tabela dependam apenas da chave primária, ou seja, não haja dependência transitiva. A terceira forma normal elimina as inconsistências de dados e cria tabelas separadas para os grupos de dados que dependem de outros atributos não primários, relacionando-as por meio de chaves estrangeiras. Ela visa eliminar redundâncias e inconsistências nos dados. Uma tabela está na 3FN se estiver na 2FN e se todos os seus atributos não chave são independentes entre si. Isso significa que não deve haver **dependências transitivas** entre os atributos. Uma dependência transitiva ocorre quando um atributo depende de outro atributo por meio de um terceiro atributo. Por exemplo, considere uma tabela de alunos com as seguintes colunas: **nome**, **curso**, **professor** e **departamento**. Se o atributo **departamento** depender do atributo **professor**, que por sua vez depende do atributo **curso**, então temos uma dependência transitiva. Para remover essa dependência transitiva, podemos dividir a tabela em duas tabelas: uma tabela de cursos e professores e outra tabela de professores e departamentos. Dessa forma, a tabela de alunos estará na 3FN. 
 
+A forma Normal Boyce-Codd (BCNF): Uma tabela está em BCNF se estiver em 3NF, e cada determinante (um conjunto de colunas que determina exclusivamente outras colunas) é uma chave candidata. BCNF é uma forma mais forte de 3NF que aborda anomalias em certas tabelas 3NF. Elimina redundância e possíveis inconsistências devido à sobreposição de chaves candidatas.
+
+A Quarta Forma Normal (4NF): Uma tabela está em 4NF se estiver em BCNF e não houver dependências com valores múltiplos. Isso significa que uma tabela com mais de um atributo independente com vários valores deve ser decomposta em tabelas separadas. 4NF resolve os problemas de redundância de dados e inconsistências relacionadas a dependências de múltiplos valores.
+
+A Quinta Forma Normal (5NF): Uma tabela está na 5NF se estiver na 4NF e as chaves candidatas implicam em todas as dependências de junção. Este formulário decompõe a tabela em tabelas menores para eliminar redundância e melhorar a integridade dos dados nos casos em que os dados são representados de diversas maneiras em tabelas diferentes.
+
 Para ilustrar o processo de normalização, vamos usar um exemplo de uma tabela que armazena dados sobre pedidos de clientes de uma loja online. A tabela original é a seguinte:
 
 | Número do pedido | Data do pedido | CPF do cliente | Nome do cliente | Endereço do cliente | Código do produto | Nome do produto | Quantidade | Preço unitário | Preço total |
@@ -129,8 +135,6 @@ A normalização de banco de dados afeta positivamente a simplicidade das opera�
 10. [Normalização em bancos de dados relacionais: um mergulho profundo](https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais)
 11. [Vantagens e Desvantagens de normalizar um banco de dados](http://ptcomputador.com/Software/database-software/113954.html)
 13. [Vantagens e desvantagens de normalizar uma base de dados](https://www.ehow.com.br/vantagens-desvantagens-normalizar-base-dados-info_38217/)
-14. [Normalização de Banco de Dados: Por que Organização é Fundamental](https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental)
-    
 
 ----------
 
