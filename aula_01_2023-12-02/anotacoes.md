@@ -27,7 +27,7 @@ Para ver exemplos de como fazer um DER usando as ferramentas mencionadas, você 
 Referencias: 
 1. [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 2. [Como Criar Diagrama Entidade Relacionamento no Word, Visio - GitMind](https://gitmind.com/pt/criar-diagrama-entidade-relacionamento.html)
-3. [Modelo para Diagrama de Entidade e Relacionamento | Exemplos - Miro. https://miro.com/pt/modelos/diagrama-entidades-relacionamento/.
+3. [Modelo para Diagrama de Entidade e Relacionamento | Exemplos - Miro. ](https://miro.com/pt/modelos/diagrama-entidades-relacionamento/)
 
 ## Modelo conceitual/lógico vs Fisico
 
