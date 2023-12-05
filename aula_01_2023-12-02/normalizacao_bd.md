@@ -126,16 +126,11 @@ A normalização de banco de dados afeta positivamente a simplicidade das opera�
 7. [O que é a normalização de bases de dados e como fazê-la?](https://ebaconline.com.br/blog/normalizacao-de-bases-de-dados)
 8. [O que é normalização em um banco de dados, e por que é tão importante?](https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni)
 9. [Descrição das noções básicas de normalização do banco de dados](https://learn.microsoft.com/pt-br/office/troubleshoot/access/database-normalization-description)
-10. https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais
-11. http://ptcomputador.com/Software/database-software/113954.html
-12. https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/
-13. https://www.ehow.com.br/vantagens-desvantagens-normalizar-base-dados-info_38217/
-14. https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental
-15. https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental
-16. https://blogdosql.com.br/normalizacao-de-bancos-de-dados-explicacao-e-beneficios/
-17. http://ptcomputador.com/Software/database-software/113954.html
-18. https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni
-19. https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais
+10. [Normalização em bancos de dados relacionais: um mergulho profundo](https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais)
+11. [Vantagens e Desvantagens de normalizar um banco de dados](http://ptcomputador.com/Software/database-software/113954.html)
+13. [Vantagens e desvantagens de normalizar uma base de dados](https://www.ehow.com.br/vantagens-desvantagens-normalizar-base-dados-info_38217/)
+14. [Normalização de Banco de Dados: Por que Organização é Fundamental](https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental)
+    
 
 ----------
 
