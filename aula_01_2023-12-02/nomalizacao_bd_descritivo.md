@@ -7,19 +7,24 @@ A normalização de banco de dados é um processo que organiza as tabelas de um 
 A normalização de banco de dados é o processo de organizar os dados em uma estrutura que evita a redundância e a dependência de dados. Isso é feito dividindo as tabelas em partes menores e mais gerenciáveis e definindo as relações entre elas.
 
 ### 1ª Forma Normal (1NF)
+
 Uma tabela está na 1ª Forma Normal quando todos os seus atributos são atômicos, ou seja, indivisíveis. Por exemplo, uma tabela de clientes deve ter colunas separadas para o primeiro nome e o sobrenome, em vez de uma coluna para o nome completo.
 Exemplo:
 ID	Nome	Sobrenome	Telefone
 1	João	Silva	123-4567
 2	Maria	Santos	987-6543
+
 ### 2ª Forma Normal (2NF)
+
 Uma tabela está na 2ª Forma Normal se estiver na 1ª Forma Normal e se todos os seus atributos não chave dependerem totalmente da chave primária. Em outras palavras, cada coluna não chave deve depender da chave primária.
 Exemplo:
 ID	Título	Autor	Editora
 1	Aprendendo SQL	João	ABC Livros
 2	Python Básico	Maria	XYZ Editora
 Neste exemplo, "Autor" e "Editora" dependem da chave primária "ID".
+
 ### 3ª Forma Normal (3NF)
+
 Uma tabela está na 3ª Forma Normal se estiver na 2ª Forma Normal e se todos os seus atributos não chave são independentes entre si. Em outras palavras, não deve haver dependências transitivas.
 Exemplo:
 ID	Nome	Endereço	Cidade	CEP
