@@ -31,8 +31,9 @@ A normalização de banco de dados é essencial para garantir a integridade e a 
 
 
 Sources
-https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni favicon
-https://learn.microsoft.com/pt-br/office/troubleshoot/access/database-normalization-description favicon
+https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni 
+
+https://learn.microsoft.com/pt-br/office/troubleshoot/access/database-normalization-description 
 
 ## Quais são os benefícios da normalização de banco de dados
 
@@ -55,6 +56,7 @@ Em resumo, a normalização de banco de dados é essencial para garantir a integ
 **Fonte:**
 
 https://www.ehow.com.br/vantagens-desvantagens-normalizar-base-dados-info_38217/ 
+
 https://www.dio.me/articles/normalizacao-de-banco-de-dados-por-que-organizacao-e-fundamental 
 
 
@@ -85,6 +87,7 @@ Em resumo, a normalização de banco de dados pode apresentar algumas desvantage
 
 **Fonte:**
 https://dev.to/gabrielgcj/o-que-e-normalizacao-em-um-banco-de-dados-e-por-que-e-tao-importante-31ni 
+
 https://appmaster.io/pt/blog/normalizacao-em-bancos-de-dados-relacionais 
 
 ## Como a normalização de banco de dados afeta a simplicidade de operações de manutenção
