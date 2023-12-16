@@ -37,6 +37,70 @@ Utilizado para pratica no banco de dados
 
 [Tipos de dados - Documentação](https://learn.microsoft.com/pt-br/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-2017)
 
+### SQL - DDL
+
+
+- CREATE TABLE
+- ALTER TABLE 
+
+Criar tabela CLIENTES
+
+```sql
+
+CREATE TABLE CLIENTES (
+    ID_CLIENTE INT NOT NULL IDENTITY (1,1),
+    NOME VARCHAR(255),
+    SEXO CHAR(1),
+    CPF CHAR(11) NOT NULL,
+    UF CHAR(2) CONSTRAINT DEF_CLIENTES_UF DEFAULT 'PB',
+CONSTRAINT PK_CLIENTES PRIMARY KEY (ID_CLIENTE),
+CONSTRAINT CHK_CLIENTES_SEXO CHECK (SEXO IN ('M','F')),
+CONSTRAINT UNQ_CLIENTES_CPF UNIQUE (CPF),
+CONSTRAINT CHK_CLIENTES_UF CHECK (UF IN ('PB','PE')) 
+
+) ;
+
+```
+Criar tabela VENDAS
+
+```sql
+CREATE TABLE VENDAS (
+    ID_VENDA INT NOT NULL IDENTITY (1,1),
+    DATA DATE NOT NULL,
+    ID_CLIENTE INT NOT NULL,
+
+    CONSTRAINT PK_VENDAS PRIMARY KEY (ID_VENDA),
+    CONSTRAINT FK_VENDAS_CLIENTES FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES (ID_CLIENTE) ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+```
+
+### SQL - DML
+
+- INSERT
+- DELETE
+- UPDATE
+
+Inserir registro
+
+```sql
+INSERT INTO MBA.DBO.CLIENTES (
+    NOME,
+    SEXO,
+    CPF,
+    UF
+) VALUES (
+    'JOAO SILVA',
+    'M',
+    '00223423312',
+    'PB'
+);
+```
+
+### SQL - DQL
+
+- SELECT
+
 ## Fotos da aula
 
 ![](./img/foto_01.jpg)
