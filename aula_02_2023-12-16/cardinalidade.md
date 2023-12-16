@@ -22,7 +22,7 @@ Veja alguns exemplos de como representar cada tipo de cardinalidade em um DER:
 
 Para saber mais sobre a cardinalidade em banco de dados e como representá-la em um DER, você pode consultar os seguintes links:
 
-- [Cardinalidade Banco de Dados: Entenda os Relacionamentos!](^5^)
+- [Cardinalidade Banco de Dados: Entenda os Relacionamentos!]
 - [O que é cardinalidade em bancos de dados | Mailchimp]
 - [O que é o mapeamento de cardinalidades | Diagramas ER]
 - [O que significa cardinalidade no banco de dados? - Você Pergunta]

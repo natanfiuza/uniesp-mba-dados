@@ -4,7 +4,11 @@
 
 - [Anotações](anotacoes.md)
 - [Cardinalidade](cardinalidade.md)
+- [Normalização de Banco de Dados - Básico](normalizacao_bd_basico.md)
+- [Normalização de Banco de Dados - Detalhado](normalizacao_bd_detalhado.md)
+
 
 ------------
+
 
 [Home](../README.md) 

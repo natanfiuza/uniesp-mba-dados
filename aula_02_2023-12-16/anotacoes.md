@@ -25,12 +25,27 @@ Um modelo descritivo de banco de dados é um modelo que representa a estrutura e
 - Chave Estrangeira ( Foreign Key)
 
 
-
-
 ### Modelo físico
 
 É o modelo que descreve como o banco de dados será implementado em um sistema de gerenciamento de banco de dados (SGBD) específico, levando em conta as características e as limitações do SGBD, como os tipos de dados, os índices, os gatilhos, os procedimentos armazenados, etc. Um modelo físico pode ser representado por meio de um código SQL, um script, um arquivo de configuração, etc.
 
+## MS SQL Server
+
+Utilizado para pratica no banco de dados
+
+[Download do SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
+
+[Tipos de dados - Documentação](https://learn.microsoft.com/pt-br/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-2017)
+
+## Fotos da aula
+
+![](./img/foto_01.jpg)
+![](./img/foto_02.jpg)
+
+## Referencias
+
+- [Normalizando um banco de dados por meio das 3 principais formas](https://spaceprogrammer.com/bd/normalizando-um-banco-de-dados-por-meio-das-3-principais-formas/)
+- [Recapitulando: normalização de banco de dados relacionais](http://www.dsc.ufcg.edu.br/~pet/jornal/maio2011/materias/recapitulando.html)
 -------------
 
 [Home 🏠](../README.md) | [Indice 📇](README.md)
