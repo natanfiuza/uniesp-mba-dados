@@ -37,7 +37,7 @@ Utilizado para pratica no banco de dados
 
 [Tipos de dados - Documentação](https://learn.microsoft.com/pt-br/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-2017)
 
-### SQL - DDL
+### SQL - DDL ( DATA DEFINITION LINGUAGE )
 
 
 - CREATE TABLE
@@ -75,7 +75,7 @@ CREATE TABLE VENDAS (
 
 ```
 
-### SQL - DML
+### SQL - DML ( DATA MANIPULATION LINGUAGE )
 
 - INSERT
 - DELETE
@@ -97,7 +97,7 @@ INSERT INTO MBA.DBO.CLIENTES (
 );
 ```
 
-### SQL - DQL
+### SQL - DQL ( DATA QUERY LINGUAGE )
 
 - SELECT
 
