@@ -2,16 +2,19 @@
 
 ## Projeto de BD
 
+- Modelo descritivo - Não técnico 
+    * Cliente / Usuário
+
 - Analise de Requisitos - Técnico
     * Desenvolvedor 
 
-- Modelo descritivo - Não técnico 
-    * Cliente / Usuário
 
   
 ## Diagrama de entidade-relacionamento (DER)
 
-Um diagrama entidade-relacionamento (DER) é uma forma de representar graficamente a estrutura lógica de um banco de dados, mostrando as entidades, os atributos e os relacionamentos entre elas. Existem diferentes ferramentas que podem ajudar você a criar um DER, como o Microsoft Word, o Microsoft Visio, o GitMind e o Lucidchart. Cada ferramenta tem suas próprias características e vantagens, mas o processo básico é semelhante. Veja a seguir alguns passos comuns para criar um DER:
+Um diagrama entidade-relacionamento (DER) é uma forma de representar graficamente a estrutura lógica de um banco de dados, mostrando as entidades, os atributos e os relacionamentos entre elas. Existem diferentes ferramentas que podem ajudar você a criar um DER, como o Microsoft Word, o Microsoft Visio, o GitMind e o Lucidchart. Cada ferramenta tem suas próprias características e vantagens, mas o processo básico é semelhante. 
+
+Veja a seguir alguns passos comuns para criar um DER:
 
 - Identifique as entidades principais do seu domínio de problema. As entidades são os objetos ou conceitos que você quer armazenar no banco de dados, como pessoas, produtos, pedidos, etc. As entidades são representadas por retângulos com o nome da entidade dentro.
 - Defina os atributos que descrevem as entidades. Os atributos são as propriedades ou características das entidades, como nome, idade, preço, quantidade, etc. Os atributos são representados por elipses com o nome do atributo dentro. Os atributos que servem como identificadores únicos das entidades são sublinhados.
@@ -20,14 +23,9 @@ Um diagrama entidade-relacionamento (DER) é uma forma de representar graficamen
 
 Para ver exemplos de como fazer um DER usando as ferramentas mencionadas, você pode acessar os seguintes links:
 
-- [Como fazer um diagrama entidade relacionamento | Lucidchart](^1^)
-- [Como Criar Diagrama Entidade Relacionamento no Word, Visio, Online? - GitMind](^2^)
-- [Modelo para Diagrama de Entidade e Relacionamento | Exemplos - Miro](^3^)
-
-Referencias: 
-1. [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-2. [Como Criar Diagrama Entidade Relacionamento no Word, Visio - GitMind](https://gitmind.com/pt/criar-diagrama-entidade-relacionamento.html)
-3. [Modelo para Diagrama de Entidade e Relacionamento | Exemplos - Miro. ](https://miro.com/pt/modelos/diagrama-entidades-relacionamento/)
+- [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
+- [Como Criar Diagrama Entidade Relacionamento no Word, Visio - GitMind](https://gitmind.com/pt/criar-diagrama-entidade-relacionamento.html)
+- [Modelo para Diagrama de Entidade e Relacionamento | Exemplos - Miro. ](https://miro.com/pt/modelos/diagrama-entidades-relacionamento/)
 
 ## Modelo conceitual/lógico vs Fisico
 
