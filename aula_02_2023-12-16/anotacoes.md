@@ -39,6 +39,7 @@ Utilizado para pratica no banco de dados
 
 ### SQL - DDL
 
+A DDL (Data Definition Language) engloba os comandos de definição do banco de dados. 
 
 - CREATE TABLE
 - ALTER TABLE 
@@ -74,8 +75,15 @@ CREATE TABLE VENDAS (
 );
 
 ```
+### SQL - DQL
+
+A DQL (Data Query Language) é o subconjunto responsável por comandos de consulta aos dados armazenados. Dentro dele, encontramos apenas o comando Select. É importante observar que em alguns materiais acadêmicos essa instrução aparece incorporada no conjunto DML,
+
+- SELECT
 
 ### SQL - DML
+
+A DML (Data Manipulation Language) corresponde aos comandos de manipulação dos dados. Composta de apenas três comandos, envolve interações de armazenamento, modificação, exclusão, inserção e atualização.
 
 - INSERT
 - DELETE
@@ -97,9 +105,14 @@ INSERT INTO MBA.DBO.CLIENTES (
 );
 ```
 
-### SQL - DQL
+### SQL - DCL 
 
-- SELECT
+ Esse subconjunto do SQL envolve comandos relacionados à segurança do banco de dados. A DCL (Data Control Language) controla o acesso aos dados, tanto concedendo privilégio de acesso, quanto retirando a permissão do usuário ou usuária.
+
+ * GRANT
+ * REVOKE
+
+-----
 
 ## Fotos da aula
 
