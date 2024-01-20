@@ -4,3 +4,14 @@
 - [Aula 01 - 2023-12-02](./aula_01_2023-12-02/README.md)
 
 - [Aula 02 - 2023-12-02](./aula_02_2023-12-16/README.md)
+
+---
+
+## Livros
+
+* [T-SQL Fundamentals, Fourth Edition.pdf](./doc/T-SQL_Fundamentals_Fourth_Edition.pdf)
+
+* [MySql Comece com o principal banco de dados open source do mercado](./aula_01_2023-12-02/doc/mysql-Comece-com-o-principal-banco-de-dados-open-source-do-mercado.pdf)
+* [Postgresql - Banco de Dados Para Aplicacoes Web Modernas - Casa Do Codigo](./aula_01_2023-12-02/doc/Postgresql-Banco-de-Dados-Para-Aplicacoes-Web-Modernas-Casa-Do-Codigo.pdf)
+* [PLSQL Domine a linguagem do banco de dados Oracle](./aula_01_2023-12-02/doc/PLSQL-Domine-a-linguagem-do-banco-de-dados-Oracle.pdf)
+* [Projeto de banco de dados](./aula_01_2023-12-02/doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
