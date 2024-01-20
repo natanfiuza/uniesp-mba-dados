@@ -6,6 +6,7 @@ Instruções SQL no SQL Server.
 - [SQL com instruções para inserir dados](./doc/02-insercao-dos-dados.sql)
 - [SQL comandos DML Avançados](./doc/03-Comandos-DML-Avancados.sql)
 
+- [Tutorial de SQL](https://www.tutorialspoint.com/sql/index.htm)
 
 ## CONSTRAINTS
 
