@@ -37,7 +37,7 @@ Utilizado para pratica no banco de dados
 
 [Tipos de dados - Documentação](https://learn.microsoft.com/pt-br/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-2017)
 
-### SQL - DDL
+### SQL - DDL ( DATA DEFINITION LINGUAGE )
 
 A DDL (Data Definition Language) engloba os comandos de definição do banco de dados. 
 
@@ -81,7 +81,7 @@ A DQL (Data Query Language) é o subconjunto responsável por comandos de consul
 
 - SELECT
 
-### SQL - DML
+### SQL - DML ( DATA MANIPULATION LINGUAGE )
 
 A DML (Data Manipulation Language) corresponde aos comandos de manipulação dos dados. Composta de apenas três comandos, envolve interações de armazenamento, modificação, exclusão, inserção e atualização.
 
@@ -105,12 +105,15 @@ INSERT INTO MBA.DBO.CLIENTES (
 );
 ```
 
+
 ### SQL - DCL 
 
  Esse subconjunto do SQL envolve comandos relacionados à segurança do banco de dados. A DCL (Data Control Language) controla o acesso aos dados, tanto concedendo privilégio de acesso, quanto retirando a permissão do usuário ou usuária.
 
  * GRANT
  * REVOKE
+
+### SQL - DQL ( DATA QUERY LINGUAGE )
 
 -----
 
