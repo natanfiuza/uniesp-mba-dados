@@ -109,6 +109,26 @@ A restrição CHECK no SQL Server define um intervalo válido de valores que pod
 
 O script SQL a seguir coloca uma restrição para a coluna **[Idade]**. Seu valor deve ser superior a 18 anos.
 
+```sql
+CREATE TABLE DemoCheckConstraint
+(
+    ID INT PRIMARY KEY,
+    [EmpName] VARCHAR(50) NULL,
+    [Age] INT CHECK (Age>18)
+)
+GO
+```
+Vamos inserir dois registros nesta tabela. O primeiro insert abaixo insere o registro com sucesso.
+
+```sql
+INSERT INTO DemoCheckConstraint (ID,[EmpName],[Age])VALUES (1,'Carlos',20)
+Go
+INSERT INTO DemoCheckConstraint (ID,[EmpName],[Age])VALUES (2,'Andre',17)
+GO
+
+```
+>> A segunda instrução INSERT falha porque não satisfaz a condição de restrição CHECK.
+
 
 -----
 
