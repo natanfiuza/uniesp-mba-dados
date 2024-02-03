@@ -166,4 +166,22 @@ Referencias:
 - [Cláusulas GROUP BY e HAVING (U-SQL)](https://learn.microsoft.com/pt-br/u-sql/statements-and-expressions/select/group-by-and-having-clauses)
 -----
 
+## Exercícios 
+
+- [Exercício 01 sem respostas](./doc/Exercicios_01_sem_respostas.sql)
+- [Exercício 02 sem respostas](./doc/Exercicios_02_sem_respostas.sql)
+- [Exercício 01 com respostas](./doc/Exercicios_01_com_respostas.sql)
+- [Exercício 02 com respostas](./doc/Exercicios_02_com_respostas.sql)
+
+---
+
+## Fotos
+
+![](./img/Foto_2024-01-20_at_12.50.28_01.jpg)
+
+![](./img/Foto_2024-01-20_at_12.50.28_02.jpg)
+
+
+---
+
 [Home 🏠](../README.md) | [Indice 📇](README.md)
