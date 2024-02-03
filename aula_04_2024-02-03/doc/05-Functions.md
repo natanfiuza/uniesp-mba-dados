@@ -222,6 +222,33 @@ Retorna o somatório de todos os valores de `expression` no tipo de dados de `ex
 | Categorias money e smallmoney |	money |
 | Categorias float e real	 | float | 
 
+
+#### Exemplos
+
+O exemplo a seguir mostra como usar a função `SUM()` para retornar dados resumidos.
+
+```sql
+
+SELECT Color, SUM(ListPrice) AS ListPrice, SUM(StandardCost) AS StandardCost  
+FROM Production.Product  
+WHERE Color IS NOT NULL   
+    AND ListPrice != 0.00   
+    AND Name LIKE 'Mountain%'  
+GROUP BY Color  
+ORDER BY Color;  
+GO
+
+
+```
+
+Retorno
+
+| Color | ListPrice | StandardCost |
+| --- | --- | --- |
+| Black    |       27404.84   | 5214.9616 |
+| Silver    |      26462.84  | 14665.6792 |
+| White   |   19.00   |    6.7926 |
+
 ---
 
 ## Query da aula sobre Functions
