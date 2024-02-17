@@ -2,6 +2,8 @@
 
 
 [Usando views](./doc/04-Views.md)
+[Usando Functions](./doc/05-Functions.md)
+[Usando Triggers](./doc/06-Triggers.md)
 
 ## O Comando `SELECT INTO`
 

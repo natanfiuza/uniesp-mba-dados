@@ -1,3 +1,35 @@
+# Triggers
+
+Um Trigger é um procedimento armazenado no banco de dados que é chamado automaticamente sempre que ocorre um evento especial no banco de dados. Por exemplo, um acionador pode ser chamado quando uma linha é inserida em uma tabela especificada ou quando determinadas colunas da tabela estão sendo atualizadas.
+
+Geralmente essas ações que acionam os triggers são alterações nas tabelas por meio de operações de inserção, exclusão e atualização de dados (insert, delete e update).
+
+## Existem duas classes de Triggers no SQL
+
+**Triggers DDL (Data Definition Language)**: Essa classe de Triggers é acionada em eventos que alteram a estrutura (como criar, modificar ou DROP uma tabela) ou em determinados eventos relacionados ao servidor, como alterações de segurança ou atualização de eventos estatísticos.
+
+**Triggers DML (Data Modification Language)**: Esta é a classe de Triggers mais usada. Nesse caso, o evento de disparo é uma declaração de modificação de dados; poderia ser uma instrução de inserção, atualização ou exclusão em uma tabela ou em uma exibição.
+
+### Os Triggers DML têm tipos diferentes
+
+**FOR ou AFTER** [`INSERT`, `UPDATE`, `DELETE`]: Esses tipos de Triggers são executados após o término da instrução de disparo (inserção, atualização ou exclusão).
+
+**INSTEAD OF** [`INSERT`, `UPDATE`, `DELETE`]: Ao contrário do tipo FOR (AFTER), os Triggers **INSTEAD OF** são executados em vez da instrução de disparo. Em outras palavras, esse tipo de trigger substitui a instrução de disparo. Isso é muito útil nos casos em que você precisa ter integridade referencial entre bancos de dados.
+
+## As vantagens do Trigger
+
+- Gerar alguns valores de coluna derivados automaticamente;
+- Aplicar a integridade referencial;
+- Registro de eventos e armazenamento de informações no acesso à tabela;
+- Auditoria;
+- Replicação síncrona de tabelas;
+- Imposição de autorizações de segurança;
+- Impedir transações inválidas.
+
+## Query da aula sobre Triggers
+
+```sql
+
 USE DISCIPLINA02
 GO
 
@@ -436,3 +468,4 @@ GO
 SELECT *
 FROM AUDITORIA_PRODUTOS;
 GO
+```
