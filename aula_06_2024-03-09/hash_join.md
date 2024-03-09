@@ -25,3 +25,7 @@ Documentação sobre
 
 1. **HASH JOIN:**
    - [HASH JOIN (Transact-SQL)](https://docs.microsoft.com/en-us/sql/relational-databases/performance/joins/hash-joins)
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

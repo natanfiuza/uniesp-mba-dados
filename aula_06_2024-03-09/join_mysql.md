@@ -92,3 +92,7 @@ JOIN orders AS o ON c.id = o.customer_id AND (o.amount > 100 OR o.amount = 50);
 Neste exemplo, a condição `(o.amount > 100 OR o.amount = 50)` usa `OR` para incluir pedidos com quantidade superior a 100 ou quantidade igual a 50.
 
 Essas condições adicionais ajudam a refinar as junções e a obter resultados mais específicos com base nos critérios desejados. Certifique-se de ajustar as condições de acordo com os requisitos específicos do seu caso de uso.
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

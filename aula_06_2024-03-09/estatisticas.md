@@ -85,3 +85,7 @@ Para obter informações detalhadas sobre estatísticas no Microsoft SQL Server,
    - [Update Statistics](https://docs.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver15#update-statistics)
 
 Esses links fornecerão informações abrangentes sobre como o SQL Server utiliza estatísticas para otimização de consultas, como você pode visualizar estatísticas e como realizar a atualização de estatísticas quando necessário.
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

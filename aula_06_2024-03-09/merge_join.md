@@ -17,3 +17,7 @@ Neste exemplo, se tanto a tabela `Orders` quanto a tabela `Customers` estiverem 
 É importante notar que, embora o `MERGE JOIN` seja eficiente para determinados cenários, seu uso depende da presença de índices adequados nas colunas de junção e da capacidade de aproveitar a ordenação natural das tabelas.
 
 Para verificar o plano de execução de uma consulta e entender qual tipo de junção está sendo utilizado, você pode usar a cláusula `EXPLAIN` ou `SHOWPLAN`. O otimizador de consultas decidirá automaticamente o método de junção mais eficiente com base nas estatísticas e índices disponíveis.
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

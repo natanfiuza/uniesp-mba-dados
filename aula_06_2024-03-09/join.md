@@ -93,3 +93,7 @@ Documentação:
 
 1. **INNER JOIN (Transact-SQL):**
    - [INNER JOIN (Transact-SQL)](https://docs.microsoft.com/en-us/sql/relational-databases/performance/joins/inner-join-transact-sql)
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)
