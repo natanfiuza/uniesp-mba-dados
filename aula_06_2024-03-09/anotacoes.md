@@ -9,6 +9,7 @@
 
 ## Similar no MySQL
 
+- [JOIN no MySQL](./join_mysql.md)
 - [Windows Function no MySQL](./windows_functions_mysql.md)
 
 -----
