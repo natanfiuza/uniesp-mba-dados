@@ -1,0 +1,1286 @@
+
+
+
+
+USE [master]
+GO
+
+IF EXISTS(
+	SELECT 1
+	FROM SYS.DATABASES
+	WHERE NAME = 'ESTATISTICAS'
+)
+	DROP DATABASE ESTATISTICAS;
+
+CREATE DATABASE ESTATISTICAS;
+GO
+
+ALTER DATABASE [ESTATISTICAS] SET RECOVERY SIMPLE WITH NO_WAIT
+GO
+ALTER DATABASE [ESTATISTICAS] MODIFY FILE ( NAME = N'ESTATISTICAS', SIZE = 204800KB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [ESTATISTICAS] MODIFY FILE ( NAME = N'ESTATISTICAS_log', SIZE = 262144KB , MAXSIZE = UNLIMITED, FILEGROWTH = 262144KB )
+GO
+
+
+USE ESTATISTICAS;
+GO
+
+SET NOCOUNT ON;
+GO
+
+CREATE TABLE PESSOAS(
+	IDPESSOA INT NOT NULL IDENTITY(1,1),
+	NOME VARCHAR(100) NOT NULL,
+	SEXO CHAR(1) NOT NULL,
+	CPF CHAR(11) NOT NULL,
+
+	CONSTRAINT PK_PESSOAS PRIMARY KEY CLUSTERED(IDPESSOA),
+
+	CONSTRAINT UNQ_PESSOAS_CPF UNIQUE NONCLUSTERED (CPF),
+
+	CONSTRAINT CHK_PESSOAS_SEXO CHECK(SEXO IN('M','F'))
+);
+GO
+
+CREATE TABLE ENDERECOS(
+	IDENDERECO INT NOT NULL IDENTITY(1,1),
+	IDPESSOA INT NOT NULL,
+	LOGRADOURO VARCHAR(100) NOT NULL,
+	NUMERO TINYINT NULL,
+	CEP CHAR(8) NOT NULL,
+
+	CONSTRAINT PK_ENDERECOS PRIMARY KEY CLUSTERED(IDENDERECO),
+	CONSTRAINT UNQ_ENDERECOS_CEP UNIQUE(CEP),
+	CONSTRAINT FK_ENDERECOS_PESSOAS FOREIGN KEY(IDPESSOA) REFERENCES PESSOAS(IDPESSOA)
+);
+GO
+
+
+DECLARE @CONTADOR INT, @QUANTIDADE INT
+SELECT @CONTADOR = 1, @QUANTIDADE = 100000;
+
+WHILE @CONTADOR <= @QUANTIDADE
+BEGIN
+	INSERT INTO PESSOAS
+	(NOME, SEXO, CPF)
+	SELECT ('PESSOA' + CAST(@CONTADOR AS VARCHAR)),
+		CASE WHEN @CONTADOR % 2 = 0 THEN 'M' ELSE 'F' END,
+		(12345000000 + @CONTADOR);
+
+	INSERT INTO ENDERECOS
+	(IDPESSOA, LOGRADOURO,NUMERO,CEP)
+	SELECT @CONTADOR, ('RUA ' + CAST(@CONTADOR AS VARCHAR)), @CONTADOR%100, (58000000 + @CONTADOR);
+
+	SET @CONTADOR = @CONTADOR + 1;
+END;
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', 
+s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+DBCC SHOW_STATISTICS ('PESSOAS', PK_PESSOAS);​
+GO
+DBCC SHOW_STATISTICS ('PESSOAS', UNQ_PESSOAS_CPF);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', PK_ENDERECOS);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);​
+GO
+
+
+--DESATIVAR O AUTO_CREATE_STATISTICS
+USE [master]
+GO
+ALTER DATABASE [ESTATISTICAS] SET AUTO_CREATE_STATISTICS OFF WITH NO_WAIT
+GO
+
+
+--EXECUTAR SELECT (SEM ESTATÍSTICAS!) (EXIBIR PLANO DE EXECUÇÃO REAL)
+USE ESTATISTICAS
+GO
+
+SELECT SEXO
+FROM PESSOAS
+WHERE SEXO = 'M';
+GO
+
+SELECT CPF
+FROM PESSOAS
+WHERE CPF = '12345000001';
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', 
+s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+--ATIVAR O AUTO_CREATE_STATISTICS
+USE [master]
+GO
+ALTER DATABASE [ESTATISTICAS] SET AUTO_CREATE_STATISTICS ON WITH NO_WAIT
+GO
+
+
+--EXECUTAR SELECT (SEM ESTATÍSTICAS!) (EXIBIR PLANO DE EXECUÇÃO REAL)
+USE ESTATISTICAS
+GO
+
+SELECT SEXO
+FROM PESSOAS
+WHERE SEXO = 'M';
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', 
+s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+SELECT CPF
+FROM PESSOAS
+WHERE CPF = '12345000001';
+GO
+
+
+--VERIFICAR SE ESTATÍSTICAS FORAM ATUALIZADAS
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--DESATIVAR O PLANO DE EXECUÇÃO
+--ATUALIZAR TODAS AS ESTATÍSTICAS (SEM FULLSCAN GARANTIDO)
+SP_UPDATESTATS;
+GO
+
+
+--VERIFICAR SE ESTATÍSTICAS FORAM ATUALIZADAS
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--VERIFICAR ESTATÍSTICAS
+DBCC SHOW_STATISTICS ('PESSOAS', PK_PESSOAS);​
+GO
+DBCC SHOW_STATISTICS ('PESSOAS', UNQ_PESSOAS_CPF);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', PK_ENDERECOS);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);​
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--ATUALIZAR O NOME DE ACORDO COM O QUE FOI CRIADO
+DBCC SHOW_STATISTICS ('PESSOAS',[_WA_Sys_00000003_0EA330E9]);​
+GO
+
+/*
+RANGE_HI_KEY - valor chave, representa o limite superior de um valor da coluna em 
+um "nível" do histograma.
+RANGE_ROWS - representa o número estimado de registros cujos valores caem no "nível" do 
+histogram, excluindo os de valor igual ao nível superior.
+EQ_ROWS - representa o número estimado de registros cujo valor é igual ao limite superior 
+do "nível" do histograma.
+DISTINCT_RANGE_ROWS - representa o número estimado de registros com valor distinto dentro 
+do "nível" do histograma, excluindo os de valor igual ao nível superior.
+AVG_RANGE_ROWS (RANGE_ROWS / DISTINCT_RANGE_ROWS for DISTINCT_RANGE_ROWS > 0) - 
+representa número médio de registros com valores duplicados dentro do "nível" do histograma, excluindo os de valor igual ao nível superior.
+*/
+
+--ATUALIZAR TODAS AS ESTATÍSTICAS
+--(COM FULLSCAN GARANTIDO, MAS NÃO ATUALIZANDO AS ESTATÍSTICAS DE TABELAS DE SISTEMAS)
+
+--UPDATE STATISTICS TABELA WITH FULLSCAN;
+
+EXEC sp_MSForEachTable 'UPDATE STATISTICS ? WITH FULLSCAN;'
+GO
+
+--VERIFICANDO ESTATÍSTICAS
+DBCC SHOW_STATISTICS ('PESSOAS', PK_PESSOAS);​
+GO
+DBCC SHOW_STATISTICS ('PESSOAS', UNQ_PESSOAS_CPF);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', PK_ENDERECOS);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);​
+GO
+
+
+--CRIANDO ESTATÍSTICAS
+CREATE STATISTICS STAT_CEP ON ENDERECOS(CEP);
+GO
+
+--EXIBIR ESTATÍSTICAS CRIADAS
+DBCC SHOW_STATISTICS ('ENDERECOS', STAT_CEP);​
+GO
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);​
+GO
+
+--REMOVER ESTATÍSTICAS
+DROP STATISTICS ENDERECOS.STAT_CEP;
+GO
+
+
+--ADICIONAR ID_ENDERECO
+
+CREATE STATISTICS STAT_CEP ON ENDERECOS(CEP,IDENDERECO);
+GO
+
+DBCC SHOW_STATISTICS ('ENDERECOS', STAT_CEP);​
+GO
+
+--https://dba.stackexchange.com/questions/181543/why-does-sql-server-not-do-compound-column-statistics-histograms
+--https://sqlperformance.com/2017/08/sql-optimizer/combining-density
+
+--REMOVER ESTATÍSTICAS
+DROP STATISTICS ENDERECOS.STAT_CEP;
+GO
+
+--ver o nome da estatística criada automaticamente
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', 
+s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--REALIZAR SELECT COM FILTRO EM UM CAMPO SEM ESTATÍSTICA E VERIFICAR SE ELE CRIOU UMA NOVA
+DROP STATISTICS PESSOAS._WA_Sys_00000003_0EA330E9;
+GO
+
+SELECT SEXO
+FROM PESSOAS
+WHERE SEXO = 'M';
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--SELECT EM MAIS DE UM CAMPO SEM ESTATÍSTICAS
+SELECT NUMERO,CEP
+FROM ENDERECOS
+WHERE NUMERO = 1 AND CEP = '58000001';
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--EXIBIR AS PROPRIEDADES DA ESTATÍSTICA CRIADA NO ITEM ANTERIOR
+
+DBCC SHOW_STATISTICS ('PESSOAS', [_WA_Sys_00000003_22AA2996]);​
+GO
+
+--(CONTEM APENAS O -PRIMEIRO- CAMPO DA CONSULTA)
+
+--CRIOU APENAS EM NÚMERO (ou não criou), POIS JÁ HAVIA EM CEP, MAS VEJA QUE É ESTATÍSTICA DE APENAS UM CAMPO!
+
+--CRIAR ESTATÍSTICA EM 2 CAMPOS
+CREATE STATISTICS STAT_CEP_NUMERO ON ENDERECOS(CEP,NUMERO);
+GO
+
+DBCC SHOW_STATISTICS ('ENDERECOS', STAT_CEP_NUMERO);​
+GO
+
+--APENAS HISTOGRAM
+DBCC SHOW_STATISTICS ('ENDERECOS', STAT_CEP_NUMERO) WITH HISTOGRAM;​
+GO
+
+--ATIVAR O PLANO DE EXECUÇÃO REAL
+SELECT NUMERO,CEP
+FROM ENDERECOS
+WHERE NUMERO = 1 AND CEP = '58000001';
+GO
+
+--A ORDEM DAS COLUNAS FAZ DIFERENÇA?!
+/*
+Se crio estatísticas para estas colunas, nesta ordem: 
+CEP,Numero,Logradouro
+as densidades são criadas para estas situações: 
+(CEP), (CEP,Numero), (CEP,Numero,Logradouro)
+
+Se você realizar uma pesquisa que use CEP e Logradouro, 
+sem utilizar o Numero, a densidade NÃO estará disponível para 
+estimar as cardinalidades.
+*/
+
+--REMOVER ESTATÍSTICA DE ÍNDICE?!
+DROP STATISTICS ENDERECOS.UNQ_ENDERECOS_CEP;
+GO
+
+--ESTATÍSTICAS FILTRADAS
+CREATE STATISTICS STAT_PESSOAS_NOME ON PESSOAS(NOME)
+WHERE NOME = 'PESSOA1'
+WITH FULLSCAN;
+GO
+
+
+DBCC SHOW_STATISTICS ('PESSOAS', STAT_PESSOAS_NOME);
+GO
+
+--EXEMPLOS
+
+--SEEK + LOOKUP
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP = '58000001';
+GO
+
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);
+GO
+
+--CUSTO DO SCAN
+SET STATISTICS IO ON
+
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+GO
+
+--SEEK + LOOKUP
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000139';
+GO
+
+
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);
+GO
+
+--TIPPING POINT (CLUSTERED INDEX SCAN)
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000199';
+GO
+
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000200';
+GO
+
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000230';
+GO
+
+--REMOVER DADOS DENTRO DO RANGE
+DELETE FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000199';
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+--SEEK + LOOKUP
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000229';
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+/*
+In Legacy CE, SQL Server assumes that data distribution on different columns are independent; In New CE, SQL Server assumes that data distribution on different columns are correlated. 
+*/
+
+
+--TIPPING POINT (CLUSTERED INDEX SCAN)????
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000230';
+GO
+
+--ATUALIZAR AS ESTATÍSTICAS
+UPDATE STATISTICS ENDERECOS WITH FULLSCAN;
+GO
+
+
+DBCC SHOW_STATISTICS ('ENDERECOS', UNQ_ENDERECOS_CEP);
+GO
+
+--CUSTO DO SCAN
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+
+--SEEK + LOOKUP
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000200';
+GO
+
+--TIPPING POINT (CLUSTERED INDEX SCAN)????
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000419';
+GO
+
+SELECT LOGRADOURO,CEP
+FROM ENDERECOS
+WHERE CEP BETWEEN '58000001' AND '58000420';
+GO
+
+
+--EXEMPLOS
+
+--CLUSTERED INDEX SCAN, POIS NÃO HÁ ÍNDICE QUE ATENDA A CONSULTA
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME = 'PESSOA1';
+GO
+
+--CLUSTERED INDEX SCAN, POIS NÃO HÁ ÍNDICE QUE ATENDA A CONSULTA
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME BETWEEN 'PESSOA1' AND 'PESSOA20'
+GO
+
+--ÍNDICE PARA ATENDER A CONSULTA
+CREATE NONCLUSTERED INDEX IDX_PESSOAS_NOME
+ON PESSOAS(NOME);
+GO
+
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME = 'PESSOA10'
+GO
+
+--SEEK + LOOKUP? NÃO, SCAN...
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME BETWEEN 'PESSOA1' AND 'PESSOA20'
+GO
+
+--SEEK + LOOKUP? NÃO, SCAN...
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME BETWEEN 'PESSOA1' AND 'PESSOA100'
+GO
+
+--cuidado com ordenamento de NÚMEROS armazenados como TEXTO!
+
+
+DBCC SHOW_STATISTICS('PESSOAS',IDX_PESSOAS_NOME);
+GO
+
+--ESTATÍSTICA ATUALIZADA?! NÃO...
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--ATUALIZANDO AS ESTATÍSTICAS
+UPDATE STATISTICS PESSOAS WITH FULLSCAN;
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--VERIFICANDO A DISTRIBUIÇÃO DOS DADOS... CONSULTA VAI UTILIZAR OS 2 PRIMEIROS "RANGES" (EXECUTAR OS 2 PRÓXIMOS COMANDOS JUNTOS, PARA FACILITAR A ANÁLISE!)
+DBCC SHOW_STATISTICS('PESSOAS',IDX_PESSOAS_NOME);
+GO
+
+
+--ESTIMATED ROWS = 356... NÃO SELETIVO,  MESMO COM ESTATÍSTICAS ATUALIZADAS...
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME BETWEEN 'PESSOA1' AND 'PESSOA100'
+GO
+
+
+--ESTATÍSTICA FILTRADA
+CREATE STATISTICS STAT_PESSOA_NOME_FILTRADO
+ON PESSOAS(NOME)
+WHERE NOME >= 'PESSOA1' AND NOME <= 'PESSOA100';  --NÃO PODE USAR O BETWEEN
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--EXECUTAR OS 2 COMANDOS ABAIXO JUNTOS
+DBCC SHOW_STATISTICS('PESSOAS',STAT_PESSOA_NOME_FILTRADO);
+GO
+
+
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE NOME BETWEEN 'PESSOA1' AND 'PESSOA100'
+GO
+
+
+
+--EXEMPLOS
+
+--CLUSTERED INDEX SCAN
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE SEXO = 'M';
+GO
+
+--ÍNDICE PARA SEEK + LOOKUP?!
+CREATE INDEX IDX_PESSOAS_SEXO ON PESSOAS(SEXO);
+GO
+
+--CLUSTERED INDEX SCAN!
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE SEXO = 'M';
+GO
+
+--ESTATÍSTICAS DESATUALIZADAS?!
+UPDATE STATISTICS PESSOAS WITH FULLSCAN;
+GO
+
+--SEEK + LOOKUP?! NÃO, CLUSTERED INDEX SCAN... CONSULTA NÃO É SELETIVA O BASTANTE
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE SEXO = 'F';
+GO
+
+--REMOVENDO A FK PARA PODER REMOVER REGISTROS DA TABELA PESSOAS
+ALTER TABLE ENDERECOS
+DROP CONSTRAINT FK_ENDERECOS_PESSOAS;
+GO
+
+--REMOVENDO TODAS AS MULHERES, MENOS A PRIMEIRA
+DELETE FROM PESSOAS
+WHERE SEXO = 'F'
+AND IDPESSOA <> 1;
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--SEEK + LOOKUP, POIS AGORA A CONSULTA É SELETIVA O BASTANTE E ESTATÍSTICAS JÁ FORAM ATUALIZADAS (MUITOS DADOS ALTERADOS, AUTO UPDATE STATISTICS FOI EXECUTADO!)
+SELECT NOME, SEXO
+FROM PESSOAS
+WHERE SEXO = 'F';
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+--EXEMPLOS
+
+--NOVA TABELA
+CREATE TABLE FILHOS(
+	IDFILHO INT NOT NULL IDENTITY(1,1),
+	NOME VARCHAR(100) NOT NULL,
+	IDPESSOA INT NOT NULL,
+
+	CONSTRAINT PK_FILHOS PRIMARY KEY CLUSTERED(IDFILHO)
+);
+GO
+
+SET STATISTICS IO OFF
+GO
+
+--INSERINDO DADOS (DESATIVE A EXIBIÇÃO DO PLANO DE EXECUÇÃO ANTES DE EXECUTAR!)
+--VAI DEMORAR... 23min30seg no meu notebook
+
+DECLARE @CONTADOR INT, @QUANTIDADE INT
+SELECT @CONTADOR = 1, @QUANTIDADE = 1000000;
+
+WHILE @CONTADOR <= @QUANTIDADE
+BEGIN
+	INSERT INTO FILHOS
+	(NOME, IDPESSOA)
+	SELECT ('FILHO DA PESSOA ' + NOME), IDPESSOA
+	FROM PESSOAS
+	WHERE IDPESSOA = (@CONTADOR % 20000);
+
+	INSERT INTO FILHOS
+	(NOME, IDPESSOA)
+	SELECT ('FILHO DA PESSOA ' + NOME), IDPESSOA
+	FROM PESSOAS
+	WHERE IDPESSOA = (@CONTADOR % 45000);
+
+	INSERT INTO FILHOS
+	(NOME, IDPESSOA)
+	SELECT ('FILHO DA PESSOA ' + NOME), IDPESSOA
+	FROM PESSOAS
+	WHERE IDPESSOA = (@CONTADOR % 97000);
+
+	SET @CONTADOR = @CONTADOR + 1;
+END;
+
+--PARA ACOMPANHAR O PROGRESSO, ABRA UMA -NOVA- CONSULTA E EXECUTE O COMANDO ABAIXO
+SELECT COUNT(*)
+FROM FILHOS WITH(NOLOCK);
+GO
+
+ALTER TABLE FILHOS
+ADD CONSTRAINT FK_FILHOS_PESSOAS FOREIGN KEY(IDPESSOA) REFERENCES PESSOAS(IDPESSOA);
+GO
+
+
+--CONTANDO OS REGISTROS (1.500.002)
+SELECT COUNT(*)
+FROM FILHOS;
+GO
+
+CREATE NONCLUSTERED INDEX IDX_FILHOS_NOME ON FILHOS(NOME);
+GO
+
+--ATIVAR O PLANO DE EXECUÇÃO REAL
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA4';
+GO
+
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE IDPESSOA = 4;
+GO
+
+DROP INDEX IDX_FILHOS_NOME ON FILHOS;
+GO
+
+CREATE INDEX IDX_FILHOS_NOME ON FILHOS(NOME,IDPESSOA);
+GO
+
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA4';
+GO
+
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE IDPESSOA = 4;
+GO
+
+DROP INDEX IDX_FILHOS_NOME ON FILHOS;
+GO
+
+CREATE INDEX IDX_FILHOS_NOME ON FILHOS(NOME)
+INCLUDE(IDPESSOA);
+GO
+
+
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA4';
+GO
+
+SELECT NOME, IDPESSOA
+FROM FILHOS
+WHERE IDPESSOA = 4;
+GO
+
+DROP INDEX IDX_FILHOS_NOME ON FILHOS;
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+CREATE STATISTICS STAT_FILHOS_NOME ON FILHOS(NOME);
+GO
+
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+
+DBCC SHOW_STATISTICS('FILHOS',STAT_FILHOS_NOME);
+GO
+
+SELECT NOME
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA1';
+GO
+
+--NÃO TEM ÍNDICE QUE ATENDA
+SELECT IDFILHO, NOME
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA1';
+GO
+
+
+CREATE NONCLUSTERED INDEX IDX_FILHOS_NOME
+ON FILHOS(NOME);
+GO
+
+DBCC SHOW_STATISTICS('FILHOS',STAT_FILHOS_NOME);
+GO
+
+DBCC SHOW_STATISTICS('FILHOS',IDX_FILHOS_NOME);
+GO
+
+--ÍNIDCE NONCLUSTERED TEM O CAMPO CHAVE E A CHAVE DO ÍNDICE CLUSTER
+SELECT IDFILHO, NOME
+FROM FILHOS
+WHERE NOME = 'FILHO DA PESSOA PESSOA1';
+GO
+
+
+--ANALISANDO UMA CONSULTA:
+
+/*
+FILTROS SÃO "SARG"?
+	NÃO: TENHO ÍNDICE NONCLUSTERED QUE TEM TODOS OS CAMPOS DA CONSULTA?
+		SIM: NONCLUSTERED INDEX SCAN
+		NÃO: CLUSTERED INDEX SCAN
+	SIM: TENHO ÍNDICE NONCLUSTERED PARA TODOS OS CAMPOS DO FILTRO?
+		NÃO: CLUSTERED INDEX SCAN
+		SIM: ELE COBRE A CONSULTA?
+			SIM: NONCLUSTERED INDEX SEEK
+			NÃO: É SELETIVO O BASTANTE? (ISSO DEPENDE DAS ESTATÍSTICAS...)
+				SIM: NONCLUSTERED SEEK + CLUSTERED LOOKUP
+				NÃO: CLUSTERED INDEX SCAN
+*/
+
+
+
+--EXEMPLOS
+
+SELECT IDPESSOA,COUNT(*) AS QTDE  --ATÉ O IDPESSOA = 10000, TODOS TEM 84 FILHOS
+FROM FILHOS
+GROUP BY IDPESSOA
+ORDER BY 1 ASC;
+GO
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+--ANALISANDO ESTATÍSTICA CRIADA PELO "AUTO CREATE STATISTICS" (ATUALIZAR O NOME DA ESTATÍSTICA AQUI)
+DBCC SHOW_STATISTICS('FILHOS',[_WA_Sys_00000003_21B6055D]) WITH HISTOGRAM;
+GO
+
+--(ATUALIZAR O NOME DA ESTATÍSTICA AQUI)
+--REMOVENDO ESTATÍSTICA
+DROP STATISTICS FILHOS._WA_Sys_00000003_21B6055D;
+GO
+
+--CRIANDO ÍNDICE NO MESMO CAMPO (E CONSEQUENTEMENTE, ESTATÍSTICA)
+CREATE INDEX IDX_FILHOS_IDPESSOA ON FILHOS(IDPESSOA);
+GO
+
+--ANALISANDO ESTATÍSTICA DO ÍNDICE (GERADA COM FULLSCAN)
+DBCC SHOW_STATISTICS('FILHOS',IDX_FILHOS_IDPESSOA) WITH HISTOGRAM;
+GO
+
+
+SELECT F.IDPESSOA
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA = 1;
+GO
+
+
+--NONCLUSTERED SEEK + CLUSTERED LOOKUP
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA = 1;
+GO
+
+
+--NONCLUSTERED INDEX SCAN
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 1 AND 20000;
+GO
+
+--ANALISANDO AS ESTATÍSTICAS
+DBCC SHOW_STATISTICS('FILHOS',IDX_FILHOS_IDPESSOA) WITH HISTOGRAM;
+GO
+
+
+
+--CLUSTERED INDEX SCAN
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 1 AND 19999;
+GO
+
+
+--CLUSTERED INDEX SCAN
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 1 AND 19998;
+GO
+
+
+DBCC SHOW_STATISTICS('FILHOS',IDX_FILHOS_IDPESSOA) WITH HISTOGRAM;
+GO
+
+--ESTIMATED NUMBER OF ROWS?!
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 45001 AND 45002;
+GO
+
+
+ALTER TABLE FILHOS
+DROP CONSTRAINT FK_FILHOS_PESSOAS;
+GO
+
+
+SELECT F.IDPESSOA, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 45001 AND 45002;
+GO
+
+
+--ANALISANDO AS ESTATÍSTICAS
+DBCC SHOW_STATISTICS('FILHOS',IDX_FILHOS_IDPESSOA) WITH HISTOGRAM;
+GO
+
+
+ALTER TABLE FILHOS
+ADD CONSTRAINT FK_FILHOS_PESSOAS FOREIGN KEY(IDPESSOA) REFERENCES PESSOAS(IDPESSOA)
+GO
+
+
+--NESTED LOOPS
+SELECT F.IDPESSOA, P.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA)
+WHERE F.IDPESSOA BETWEEN 45001 AND 45005;
+
+--MERGE JOIN
+SELECT F.IDPESSOA, P.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA);
+GO
+
+
+
+SELECT F.IDPESSOA, P.NOME, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA);
+GO
+
+
+--HASH MATCH
+SELECT F.IDPESSOA, P.NOME, F.NOME
+FROM FILHOS AS F
+INNER JOIN PESSOAS AS P ON(P.IDPESSOA = F.IDPESSOA);
+GO
+
+
+
+/*
+https://www.sqlshack.com/sql-server-statistics-and-how-to-perform-update-statistics-in-sql/
+
+https://www.red-gate.com/simple-talk/databases/sql-server/performance-sql-server/sql-server-statistics-problems-and-solutions/
+
+https://techcommunity.microsoft.com/t5/sql-server-support-blog/sql-server-ce-multiple-single-column-statistics/ba-p/2726969
+*/
+
+------------------------------------EXEMPLO 01
+
+
+CREATE TABLE EXEMPLO01(
+	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	DATA_CADASTRO VARCHAR(8) NOT NULL,
+	NOME VARCHAR(32)
+);
+GO
+
+INSERT INTO EXEMPLO01
+SELECT '01042023', 'TESTE 01'
+GO
+
+SELECT *, 
+CONVERT(DATE,
+LEFT(DATA_CADASTRO,2) + '/' + SUBSTRING(DATA_CADASTRO,3,2) + '/' + RIGHT(DATA_CADASTRO,4)
+,103)
+FROM EXEMPLO01
+GO
+
+ALTER TABLE EXEMPLO01
+ADD DATA_DATE AS
+CONVERT(DATE,
+LEFT(DATA_CADASTRO,2) + '/' + SUBSTRING(DATA_CADASTRO,3,2) + '/' + RIGHT(DATA_CADASTRO,4)
+,103)
+GO
+
+SELECT *
+FROM EXEMPLO01
+WHERE DATA_DATE > CAST('20230331' AS date)
+GO
+
+CREATE INDEX IDX_01 ON EXEMPLO01(DATA_DATE);
+GO
+
+SELECT DATA_DATE
+FROM EXEMPLO01
+WHERE DATA_DATE > CAST('20230331' AS date)
+GO
+
+
+SELECT o.name as Objeto, s.name AS Estatística,STATS_DATE(s.object_id, s.stats_id) AS 'Data', s.auto_created, s.user_created, s.has_filter​
+FROM sys.stats s​
+inner join sys.objects o ON (o.object_id = s.object_id)​
+Where --STATS_DATE(s.object_id, s.stats_id) < Dateadd(M,-1, GetDate())  --não atualizada há um mês​
+--and 
+o.type_desc IN ('USER_TABLE') --,'INTERNAL_TABLE')​
+order by STATS_DATE(s.object_id, s.stats_id) Desc;
+GO
+
+DBCC SHOW_STATISTICS('EXEMPLO01',[_WA_Sys_00000004_4CA06362]);
+GO
+
+ALTER TABLE EXEMPLO01
+ADD DATA_DATE2 AS
+CONVERT(DATE,
+LEFT(DATA_CADASTRO,2) + '/' + SUBSTRING(DATA_CADASTRO,3,2) + '/' + RIGHT(DATA_CADASTRO,4)
+,103) PERSISTED;
+GO
+
+CREATE INDEX IDX_02 ON EXEMPLO01(DATA_DATE2);
+GO
+
+SELECT *
+FROM EXEMPLO01
+WHERE DATA_DATE2 > CAST('20230331' AS date)
+GO
+
+
+----------------------------------EXEMPLO 02
+
+CREATE TABLE EXEMPLO02(
+	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	ALUNO VARCHAR(32) NOT NULL,
+	MEDIA NUMERIC(4,2) NOT NULL
+);
+GO
+
+INSERT INTO EXEMPLO02
+SELECT 'JOAO', 99.45;
+GO
+
+SELECT *
+FROM EXEMPLO02;
+GO
+
+ALTER TABLE EXEMPLO02
+ADD MEDIA2 AS ROUND(MEDIA,0);
+GO
+
+SELECT *
+FROM EXEMPLO02;
+GO
+
+ALTER TABLE EXEMPLO02
+ADD MEDIA3 AS
+CASE
+	WHEN MEDIA < 10 THEN '0'
+	WHEN MEDIA < 20 THEN '1'
+	WHEN MEDIA < 30 THEN '2'
+	WHEN MEDIA < 40 THEN '3'
+	WHEN MEDIA < 50 THEN '4'
+	WHEN MEDIA < 60 THEN '5'
+	WHEN MEDIA < 70 THEN '6'
+	WHEN MEDIA < 80 THEN '7'
+	WHEN MEDIA < 90 THEN '8'
+	WHEN MEDIA < 100 THEN '9'
+END;
+GO
+
+SELECT *
+FROM EXEMPLO02;
+GO
+
+ALTER TABLE EXEMPLO02
+ADD MEDIA4 AS 
+CASE 
+	WHEN MEDIA <= 25 THEN 1
+	WHEN MEDIA <= 50 THEN 2
+	WHEN MEDIA <= 75 THEN 3
+	WHEN MEDIA < 100 THEN 4
+END;
+GO
+
+SELECT *
+FROM EXEMPLO02;
+GO
+
+
+--------------------------------EXEMPLO03 (BITWISE OPERATIONS)
+
+DROP TABLE IF EXISTS USERS;
+GO
+CREATE TABLE USERS(
+	UserId Int Primary Key Clustered Not Null,
+	UserName Varchar(50) Not Null
+	--,UserErrorFlag Int Not Null Default (0)
+);
+GO
+
+DROP TABLE IF EXISTS ERRORS;
+GO
+CREATE TABLE ERRORS(
+	ErrorId Int Primary Key Clustered Not Null,
+	ErrorDescr Varchar(50) Not Null,
+	ErrorFlag Int Not Null
+);
+GO
+
+DROP TABLE IF EXISTS USERS_ERRORS;
+GO
+CREATE TABLE USERS_ERRORS(
+	UserId INT NOT NULL,
+	ErrorId INT NOT NULL,
+
+	PRIMARY KEY CLUSTERED(USERID,ERRORID)
+);
+GO
+
+INSERT INTO USERS
+(UserId,UserName)
+VALUES
+(1,'USUARIO 01');
+GO
+
+SELECT *
+FROM USERS;
+GO
+
+INSERT INTO ERRORS
+(ErrorId,ErrorDescr,ErrorFlag)
+VALUES
+(1,'Invalid Email',1),			--0001
+(2,'Invalid Name',2),			--0010
+(3,'Invalid Phone Number',4),	--0100
+(4,'Unknown Error',8);			--1000
+GO
+
+SELECT *
+FROM ERRORS;
+GO
+
+INSERT INTO USERS_ERRORS
+(UserId,ErrorId)
+VALUES
+(1,2);
+GO
+
+SELECT *
+FROM USERS_ERRORS;
+GO
+
+SELECT U.UserName, E.ErrorDescr, E.ErrorFlag
+FROM USERS U
+INNER JOIN USERS_ERRORS UE ON (U.UserId = UE.UserId)
+INNER JOIN ERRORS E ON (E.ErrorId = UE.ErrorId);
+GO
+
+
+ALTER TABLE USERS
+ADD UserErrorFlag Int Not Null Default (0);
+GO
+
+UPDATE USERS
+SET UserErrorFlag = 5  --0101
+WHERE UserId = 1;
+GO
+
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 1 > 0;			--0101 & 0001
+GO
+
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 2 > 0;			--0101 & 0010
+GO
+
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 4 > 0;			--0101 & 0100
+GO
+
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 8 > 0;			--0101 & 1000
+GO
+
+--LISTAR OS USUÁRIOS COM O ERRO 1 OU 2 
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 3 > 0;			--0101 & 0011
+GO
+
+--LISTAR OS USUÁRIOS COM QUALQUER ERRO (SQL)
+SELECT *
+FROM USERS
+WHERE UserErrorFlag > 0;
+GO
+
+--LISTAR OS USUÁRIOS COM QUALQUER ERRO (BITWISE)
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 15 > 0;			--0101 & 1111
+GO
+
+UPDATE USERS
+SET UserErrorFlag = 0
+WHERE UserId = 1;
+GO
+
+SELECT *
+FROM USERS
+WHERE UserErrorFlag & 15 > 0;			--0101 & 1111
+GO
+
+
+
+---------------------------EXEMPLO 04
+
+CREATE TABLE Students
+(
+	Id INT PRIMARY KEY IDENTITY,
+	StudentName VARCHAR (50),
+	StudentGender VARCHAR (50),
+	StudentAge INT
+)
+GO
+
+INSERT INTO Students VALUES ('Sally', 'Female', 14 )
+INSERT INTO Students VALUES ('Edward', 'Male', 12 )
+INSERT INTO Students VALUES ('Jon', 'Male', 13 )
+INSERT INTO Students VALUES ('Liana', 'Female', 10 )
+INSERT INTO Students VALUES ('Ben', 'Male', 11 )
+INSERT INTO Students VALUES ('Elice', 'Female', 12 )
+INSERT INTO Students VALUES ('Nick', 'Male', 9 )
+INSERT INTO Students VALUES ('Josh', 'Male', 12 )
+INSERT INTO Students VALUES ('Liza', 'Female', 10 )
+INSERT INTO Students VALUES ('Wick', 'Male', 15 )
+GO
+
+SELECT * FROM Students;
+GO
+
+--WINDOWS FUNCTIONS
+	--RANKING FUCTIONS - ROW_NUMBER, RANK, DENSE_RANK, NTILE
+
+SELECT Id, StudentName, StudentGender, StudentAge,
+SUM (StudentAge) OVER (PARTITION BY StudentGender ORDER BY Id), 
+LAG(StudentAge,1) OVER (PARTITION BY StudentGender ORDER BY Id) AS Anterior,
+LEAD(StudentAge,2) OVER (PARTITION BY StudentGender ORDER BY Id) AS Posterior
+FROM Students
+ORDER BY StudentGender, ID;
+GO

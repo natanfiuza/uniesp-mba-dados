@@ -1,0 +1,45 @@
+# Parte 05 - Windows Function
+
+Material enviado pelo professor.
+
+Mais detalhes sobre [Windows Function](../windows_functions.md)
+
+## SQL do Professor 
+```sql
+USE TUNNING;
+GO
+
+SELECT 
+    T.ID, 
+    T.ANO, 
+    A.NOME, 
+    COUNT(*) OVER (PARTITION BY T.ID) 
+        AS QTDE_POR_TURMA
+FROM TURMAS T
+INNER JOIN MATRICULAS M ON (M.ID_TURMA = T.ID)
+INNER JOIN ALUNOS A ON (A.ID = M.ID_ALUNO)
+GROUP BY T.ID, T.ANO, A.NOME
+ORDER BY 4 ASC, T.ID, A.NOME;
+GO
+
+SELECT 
+    ID, 
+    NOME, 
+    CEP, 
+    SUM(SALARIO) OVER(PARTITION BY CEP) 
+        AS SALARIO_POR_CEP
+FROM 
+    FUNCIONARIOS F;
+GO
+
+SELECT 
+    ID, 
+    NOME, 
+    YEAR(DT_NASCIMENTO) 
+        AS ANO_NASCIMENTO, 
+    SUM(SALARIO) OVER(PARTITION BY YEAR(DT_NASCIMENTO)) 
+        AS SALARIO_POR_ANO_NASCIMENTO
+FROM 
+    FUNCIONARIOS F;
+GO
+```
