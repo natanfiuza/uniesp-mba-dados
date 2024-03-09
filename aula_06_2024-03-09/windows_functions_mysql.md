@@ -103,3 +103,8 @@ A documentação oficial do MySQL fornece mais detalhes sobre a função `PERCEN
 
 - [PERCENT_RANK()](https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_percent-rank)
 - [Funções de janela (funções de análise)](https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html)
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

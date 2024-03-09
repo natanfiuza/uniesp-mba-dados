@@ -60,3 +60,7 @@ FROM OrderDetails;
 Esses são apenas alguns exemplos e há muitas outras funções de janela disponíveis. A documentação oficial do Microsoft SQL Server fornece informações detalhadas sobre o uso e a sintaxe dessas funções:
 
 - [Funções de janela (Transact-SQL)](https://docs.microsoft.com/en-us/sql/t-sql/functions/window-functions-transact-sql)
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

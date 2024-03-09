@@ -22,3 +22,8 @@ Aqui estão alguns links para a documentação oficial do Microsoft SQL Server q
 2. Documentação sobre planos de execução:
    - [Displaying Graphical Execution Plans (SQL Server Management Studio)](https://docs.microsoft.com/en-us/sql/relational-databases/performance/displaying-graphical-execution-plans-sql-server-management-studio)
    - [Showplan Logical and Physical Operators Reference](https://docs.microsoft.com/en-us/sql/relational-databases/performance/showplan-logical-and-physical-operators-reference)
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)
