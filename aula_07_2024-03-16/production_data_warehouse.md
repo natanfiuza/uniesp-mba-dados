@@ -37,3 +37,8 @@ Podemos pensar em um PDW como um "nervo central" de uma organização, que colet
 - Artigo: "Real-Time Data Warehousing" por Ralph Kimball
 - Livro: "Data Warehousing in the Age of Big Data" por Krish Krishnan
 
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

@@ -30,3 +30,8 @@ O Data Warehouse desempenha um papel crucial no Business Intelligence (BI), forn
    - Casos de uso de sucesso incluem empresas como Walmart, Amazon e Google, que usam data warehouses para analisar grandes volumes de dados e obter insights valiosos para operações e estratégias de negócios.
 
 O Data Warehouse continua a ser uma peça fundamental no cenário de BI, capacitando as organizações a transformar dados em informações acionáveis que impulsionam o crescimento e o sucesso nos negócios.
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

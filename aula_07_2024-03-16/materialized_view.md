@@ -92,3 +92,8 @@ GROUP BY customer_id;
 ```
 
 Essa abordagem requer que você atualize manualmente os dados na tabela sempre que quiser que eles sejam atualizados. Portanto, não é tão automatizado quanto o uso de materialized views no PostgreSQL, mas pode ser uma solução prática para obter resultados semelhantes no MySQL.
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

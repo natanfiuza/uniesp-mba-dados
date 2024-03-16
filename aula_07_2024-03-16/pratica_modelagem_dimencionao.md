@@ -6,14 +6,14 @@ Aqui está uma proposta de modelagem dimensional para o Data Warehouse da empres
 
 ### Tabela de Fatos: 
 
-   Tabela: **contratacoes**
-   | Nome | Tipo  |
-   |------|-------|
-   | id_contratacao |  int  |
-   | id_funcionario |  int  |
-   |  data_contratacao | datetime  |
-   |  cargo | string   |
-   |  salario |  float |
+Tabela: **contratacoes**
+| Nome | Tipo  |
+|------|-------|
+| id_contratacao |  int  |
+| id_funcionario |  int  |
+|  data_contratacao | datetime  |
+|  cargo | string   |
+|  salario |  float |
         
         
 ### Tabelas de Dimensão: 
@@ -209,3 +209,8 @@ Tabela: **produtos**
 - As tabelas de dimensão fornecem contextos adicionais para os dados da tabela de fatos, permitindo a análise de diferentes perspectivas.
 - As chaves estrangeiras nas tabelas de fatos se relacionam com as chaves primárias nas tabelas de dimensão, estabelecendo relacionamentos entre os dados.
 - Esse modelo permite consultas analíticas eficientes para responder perguntas de negócios específicas e gerar insights valiosos para a empresa.
+
+
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

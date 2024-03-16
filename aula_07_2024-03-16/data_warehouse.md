@@ -41,3 +41,6 @@ Podemos pensar em um Data Warehouse como uma biblioteca gigante, onde os dados s
 - Livro: ["The Data Warehouse Toolkit"](./doc/The_Data_Warehouse_Toolkit.pdf) por Ralph Kimball
 - Artigo: "A Brief History of Data Warehousing" por Margaret Rouse, TechTarget
 
+-----
+
+[Home 🏠](../README.md) | [Indice 📇](README.md)

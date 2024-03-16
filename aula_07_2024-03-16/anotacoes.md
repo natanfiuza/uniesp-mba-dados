@@ -9,7 +9,7 @@
 - [Ralph Kimball conceito bottom-top "de baixo para cima"](./ralph_kimball_de_baixo_para_cima.md)
 - [A Importância do Data Warehouse no Business Intelligence](./datawarehous_business_intelligence.md)
 - [Materialized View](./materialized_view.md)
-
+- [# Prática Modelagem Dimencional](./pratica_modelagem_dimencionao.md)
 -----
 
 ## Enviados pelo professor:
