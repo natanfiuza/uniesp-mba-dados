@@ -30,3 +30,4 @@
 
 - [Ciencia de Dados](./doc/ciencia_de_dados.md)
 - [Uso do SQL no dia a dia do Cientista de Dados](./doc/sql_cientista_de_dados.md)
+- [O uso do comando SELECT em um sistema CRUD de CRM](./doc/uso_select_crud_crm.md)
