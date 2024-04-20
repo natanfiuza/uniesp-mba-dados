@@ -1,4 +1,4 @@
-# Aula 07 (Data Warehouse - Business Intelligence) - 2024-03-16
+# Aula 08 (Data Warehouse - Práticas) - 2024-04-06
 
 
 - [Anotações](anotacoes.md)
