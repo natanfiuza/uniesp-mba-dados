@@ -1,0 +1,688 @@
+---
+title: |
+
+  <p align="Left"> 
+  Análise de Impacto:
+  Revisão de regras de négocio e dados</p>  
+
+author: "Exemplo"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::material:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    cards: false
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	fig.align = "Left",
+	message = FALSE,
+	warning = FALSE,
+	cache = FALSE,
+	dev = "jpeg",
+	dpi = 90,
+	out.width = "100%"
+)
+```
+
+```{r, echo=FALSE, results='hide'}
+### ===========================
+### Pacotes
+### ===========================
+
+rm(list=ls())
+
+library(googlesheets4)
+library(tidyverse)
+library(plotly)
+library(RColorBrewer)
+library(prettydoc)
+library(kableExtra)
+library(knitr)
+library(htmltools)
+library(rmdformats)
+### ===========================
+### Lendo os bancos
+### ===========================
+
+
+gs4_auth(email = 'SeuE-mail')
+
+## =====================================================================================================##
+## Criando os Indicadores
+## =====================================================================================================##
+
+### Dados Indicador ###
+
+# Dados ja calculados dos indicadores que vamos trabalhar, os indicadores foram calculados no xaweasxa. Já corrigindo o tipo do dado, somente as datas que não estão sendo lido como datas.
+# Dados da xxxx coletados de xxxxxx
+
+txo_antes <- read_sheet("https://Linkdogooglesheets", sheet = 1, col_types = "?cnnn")
+txo_depois <- read_sheet("https://Linkdogooglesheets", sheet = 2,col_types = "?cnnn")
+
+names(txo_antes) <- make.names(names(txo_antes))
+names(txo_depois) <- make.names(names(txo_depois))
+
+### mudando nome de coluna e corrigindo o tipo da coluna mes para data
+txo_antes <- txo_antes %>% 
+  mutate(mes = as.Date(mes), class = 'antes', perc = '-') %>% 
+  dplyr::filter(mes <= '2022-09-01')
+
+
+txo_depois <- txo_depois %>% 
+  mutate(mes = as.Date(mes), class = 'depois', perc = '-') %>% 
+  dplyr::filter(!(unidade %in% c("HMD-SSA","PREMIUM","HSG" )) & mes <= '2022-09-01')
+
+### criando o delta
+
+txo_delta <- txo_antes %>% 
+  left_join(txo_depois,by =  c('mes','unidade')) %>%
+  mutate(delta = (taxa_ocupacao.y - taxa_ocupacao.x)) %>% 
+  mutate(class = 'delta') %>% 
+  rename(taxa_ocupacao = delta) %>% 
+  mutate(perc = round((taxa_ocupacao/taxa_ocupacao.x)*100),2) %>% 
+  dplyr::select("mes","unidade", "taxa_ocupacao", "perc", "class")
+
+
+### juntando as bases e arredondando percentuais
+
+txo_geral_mm <- txo_antes %>% 
+  dplyr::select('mes','unidade','taxa_ocupacao', 'class', "perc") %>% 
+  rbind(txo_depois %>% 
+          dplyr::select('mes','unidade', 'taxa_ocupacao','class', "perc")) %>%
+  rbind(txo_delta %>% 
+          dplyr::select('mes','unidade', 'taxa_ocupacao','class', "perc"))%>% 
+  mutate(taxa_ocupacao= round((taxa_ocupacao*100),2)) 
+
+### anual para comparar com xxxx
+
+txo_anual_xxxx <- read_sheet("Linkdogooglesheets", sheet = 4,col_types = "?n")
+txo_anual_xxxx <- txo_anual_xxxx %>% 
+  mutate(class = 'xxxx' )
+
+
+
+##calculando taxa para cada semestre por unidade
+txo_antes_ano <- txo_antes %>% 
+  mutate(ano = format(mes,"%Y")) %>% 
+  dplyr::select(ano,unidade,paciente_dia, leito_dia_operacional) %>%
+  group_by(unidade, ano) %>% 
+  summarise_all(sum) %>% 
+  ungroup() %>% 
+  mutate(txo = round((paciente_dia/leito_dia_operacional)*100,2),
+         class = 'antes')
+
+
+txo_depois_ano <- txo_depois %>% 
+  mutate(ano = format(mes,"%Y")) %>% 
+  dplyr::select(ano,unidade,paciente_dia, leito_dia_operacional) %>%
+  group_by(unidade, ano) %>% 
+  summarise_all(sum) %>% 
+  ungroup() %>% 
+  mutate(txo = round((paciente_dia/leito_dia_operacional)*100,2),
+         class = 'depois')
+
+
+## criando data frame para graficos
+txo_ano <- data.frame(ano = c(txo_antes_ano$ano,txo_depois_ano$ano), 
+                      unidade = c(txo_antes_ano$unidade, txo_depois_ano$unidade),
+                      taxa_ocupacao = c(txo_antes_ano$txo,txo_depois_ano$txo),
+                      class =  c(txo_antes_ano$class, txo_depois_ano$class))
+
+## =====================================================================================================##
+# =====================================================================================================##
+## Criando as Variaveis
+## =====================================================================================================##
+
+### Variavel 2
+
+pcd_media <- txo_antes %>% 
+  left_join(txo_depois,by =  c('mes','unidade')) %>%
+  mutate(delta = (paciente_dia.y - paciente_dia.x), ano = format(mes,"%Y")) %>% 
+  dplyr::select("ano","unidade", 'paciente_dia.y', 'paciente_dia.x', "delta" ) %>% 
+  group_by(unidade, ano) %>% 
+  summarise_all(mean) %>% 
+  ungroup()%>% 
+  rename("paciente_dia_antes" = 'paciente_dia.x', "paciente_dia_depois" = 'paciente_dia.y',
+         "paciente_dia_delta" = "delta") %>% 
+  mutate(paciente_dia_delta = round(paciente_dia_delta,0), paciente_dia_antes = round(paciente_dia_antes,0),
+         paciente_dia_depois = round(paciente_dia_depois,0) ) %>% 
+  pivot_longer(cols = starts_with("paciente_dia_"),
+               names_to = "class",
+               values_to = "paciente_dia")
+
+pcd_media$class <- str_replace_all(pcd_media$class,"paciente_dia_", "")
+
+### Variavel 2
+
+ltod_media <- txo_antes %>% 
+  left_join(txo_depois,by =  c('mes','unidade')) %>%
+  mutate(delta = (leito_dia_operacional.y - leito_dia_operacional.x), ano = format(mes,"%Y")) %>% 
+  dplyr::select("ano","unidade", 'leito_dia_operacional.y', 'leito_dia_operacional.x', "delta" ) %>% 
+  group_by(unidade, ano) %>% 
+  summarise_all(mean) %>% 
+  ungroup()%>% 
+  rename("leito_dia_operacional_antes" = 'leito_dia_operacional.x', "leito_dia_operacional_depois" = 'leito_dia_operacional.y',
+         "leito_dia_operacional_delta" = "delta") %>% 
+  mutate(leito_dia_operacional_delta = round(leito_dia_operacional_delta,0), leito_dia_operacional_antes = round(leito_dia_operacional_antes,0),
+         leito_dia_operacional_depois = round(leito_dia_operacional_depois,0) ) %>% 
+  pivot_longer(cols = starts_with("leito_dia_operacional_"),
+               names_to = "class",
+               values_to = "leito_dia_operacional")
+
+ltod_media$class <- str_replace_all(ltod_media$class,"leito_dia_operacional_", "")
+
+## =====================================================================================================##
+
+```
+
+# Contexto
+
+Ao iniciar o projeto de criação do Data lake, algumas regras de negócio aplicadas para os cálculos dos indicadores monitorados pelo XXXSXSX precisaram ser revisitadas para serem reproduzidas na construção de novas formas de visualização. Dentre a gama de variáveis envolvidas, quatro sofreram pequenas alterações, são elas:
+
+  * Variavel 1
+  * Variavel 2
+
+As variáveis listadas, são consideradas no cálculo de X indicadores, dentre os que já foram contemplados ao longo do projeto. Este relatório tem como objetivo demonstrar os impactos  decorrentes às correções de regras de negócio nestes indicadores:
+
+  * Indicador
+
+Para cada indicador vamos analisar o comportamento antes e depois da mudança de regra, além de uma comparação com os indicadores anuais divulgados pela xxxx. Nossa fonte de referência neste caso foi o *‘Observatório xxxx 2022’*, que em sua composição utiliza dados coletados mensalmente no *Sistema de Indicadores para hospital xxxx*.
+
+# Considerações 
+
+ Nesta análise usamos os dados que temos à nossa disposição não apenas para olhar o que passou, mas para possivelmente planejar o nosso futuro. Observamos que dentre as variáveis analisadas, as que mais sofreram impactos com a reconfiguração no cálculo foram __Variavel 1__, seguido de __Variavel 2__, como será demonstrado nos gráficos a seguir. 
+ Além disso, essas mudanças geraram possivelmente um impacto para as unidades de saúde analisadas, tendo em vista que a maioria dos indicadores obtiveram valores menores após implantação da nova regra. Percebemos também que para as unidades de Empresa1 e Empresa2, no ano de 2020, a grande maioria dos indicadores quando comparados com os dados da xxxx, apresentam grande diferença de taxas e valores. 
+
+ Também podemos concluir que o comportamento apresentadp nas unidades de Empresa1 e Empresa2 possuem uma semelhança de maneira geral e a unidade Empresa2 possui comportamento diferenciado.
+ 
+ De maneira geral podemos dizer que com tais obeservações podemos obter uma melhor compreensão na tomada de decisão seguindo os pretextos das novas regras implantadas, auxiliando assim a abrangência dessa nova tendência e remodelação das regras para as novas unidades que virão a compor a XXXSXSX.
+
+
+# Variavel 2
+
+Numa visão geral do delta para a variável _Variavel 2_, observamos que a tendência dos resultados abaixo do eixo central aparecem em maior visão nas 3 unidades e com valores que não estão em sua maioria próximos a esse eixo. Isso nos demonstra que, com a mudança de regra, tivemos uma tendência, porém nos leva a pensar se a regra utilizada atualmente é a mais próxima da realidade ou se ainda existem falhas no processo de coleta dos dados ou fluxos internos.
+
+## {.tabset .tabset-fade}
+### Unidade Empresa1
+
+><font size=-1>Observamos que independente da mudança de regra para essa variável, a alteração não foi deveras significativa, apenas observamos uma leve mudança do delta para valores acima do eixo no ano de 2021, já nos demais anos os valores tendem a permanecer abaixo do eixo. Vimos também que a maior diferença foi no ano de 2018 com um valor diferencial de -94, nos anos de 2019 e 2020 essa diferença vem regularizando.</font>
+
+
+```{r, echo=FALSE}
+
+pcd_media_SA <- pcd_media %>%
+  dplyr::filter(unidade == "Empresa1") %>% 
+  plot_ly(x = ~ano, 
+          y = ~paciente_dia, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+pcd_media_SA  
+```
+### Unidade Empresa2
+
+><font size=-1>Os valores vem se mantendo basicamente os mesmos em todos os anos analisados, até no ano de 2020, onde tivemos uma baixa nos quantitativos. Ao analisarmos o delta nos anos de 2019, 2020, 2021 e 2022 vemos essa diferença sempre sendo mantida, porém novamente no ano de 2018 encontramos um valor maior que os demais, podendo nos levar a pensar em alguns pontos... "As informações estavam sendo coletadas de uma forma errada ou a regra(processos) utilizada, não estavam sendo aplicada de forma correta?</font>
+
+```{r, echo=FALSE}
+pcd_media_C <- pcd_media %>%
+  dplyr::filter(unidade == "Empresa2") %>% 
+  plot_ly(x = ~ano, 
+          y = ~paciente_dia, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+pcd_media_C  
+
+
+```
+
+### Unidade Empresa3
+
+><font size=-1>Na unidade em questão vemos que a nova regra sempre traz valores menores em comparação a regra anterior. Seguindo o caminho oposto às demais unidades, o ano em que o delta teve o seu maior pico foi em 2022 e o seu menor pico foi em 2019. A unidade não possui dados em 2018.</font>
+
+```{r, echo=FALSE}
+pcd_media_BC <- pcd_media %>%
+  dplyr::filter(unidade == "Empresa3") %>% 
+  plot_ly(x = ~ano, 
+          y = ~paciente_dia, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+pcd_media_BC 
+
+```
+## {-}
+### Tabela resumo
+```{r, echo=FALSE}
+
+pd_tabela <- txo_antes %>% 
+  left_join(txo_depois,by =  c('mes','unidade')) %>%
+  mutate(delta = (paciente_dia.y - paciente_dia.x)) %>% 
+  dplyr::select("mes","unidade", 'paciente_dia.y', 'paciente_dia.x', "delta" ) %>% 
+  rename("Mês" = "mes","Unidade" = "unidade", "Variavel 2 - antes" = 'paciente_dia.x',
+         "Variavel 2 - depois" = 'paciente_dia.y',"Delta" = "delta" ) %>% 
+   DT::datatable()
+
+pd_tabela
+
+```  
+
+# Variavel 2
+
+Como análise geral dos valores nas unidades de _Empresa1_ e _Empresa2_, é percebido um grande aumento desse quantitativo, já em Empresa3 foi o contrário, logo temos uma tendência do delta com valores acima do eixo nos primeiros naos e valores abaixo nos anos seguintes. 
+Uma demonstração de crescimento da maturidade na coleta do dado e correção em alguns processos internos e demais regras é apresentado na tendência de queda com valores se aproximando do eixo central do delta nas unidades Empresa1 e Empresa2.
+
+Com os resultados e análises feitos, podemos concluir que as unidades em questão passaram por um amadurecimento e correção das regras que regem as movimentações e controle de leitos, gerando assim uma padronização desse controle, correção de processos internos, fluxos de trabalho, correções das nomenclaturas dos setores, unidades de internação e classificação dos tipos de leitos. Isso facilitará a inclusão de novas unidades hospitalares, resultando numa entrega de governança e tratamento dos dados iniciais. 
+
+## {.tabset .tabset-fade}
+### Unidade Empresa1
+
+><font size=-1>Com a entrada da nova regra analisamos que houve um aumento significativo no quantitativo de leitos contabilizados, e isso gerou um impacto nos valores do delta. Em contrapartida temos um ponto de atenção, a quantidade de leitos que não estavam sendo contabilizados nos anos anteriores à 2022. É perceptível que essa diferença está em uma tendência de queda, gerando assim uma correção em torno de 20%(comparação realizada entre os anos de 2018 e 2021).</font>
+
+
+```{r, echo=FALSE}
+
+ltod_media_SA <- ltod_media %>%
+  dplyr::filter(unidade == "Empresa1") %>% 
+  plot_ly(x = ~ano, 
+          y = ~leito_dia_operacional, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+ltod_media_SA  
+
+```
+
+### Unidade Empresa2
+
+><font size=-1>Com a análise da unidade de Empresa2, temos nosso caso mais "crítico" em termos de impacto “_pós mudança de regra_”. Os valores vistos chegam a casa dos 2 mil de diferença nos anos iniciais da nossa análise, porém a unidade em questão, assim como as demais, segue o mesmo contexto de diminuição e correção dessas diferenças. 
+Como insight produtivo para futura tomada de decisão, devemos revisitar as regras implantadas no ano de 2021, pois foi justamente a partir desse ano que iniciou-se a possibilidade de regularização.</font>
+
+```{r, echo=FALSE}
+ltod_media_C <- ltod_media %>%
+  dplyr::filter(unidade == "Empresa2") %>% 
+  plot_ly(x = ~ano, 
+          y = ~leito_dia_operacional, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+ltod_media_C 
+
+```
+
+### Unidade Empresa3
+
+><font size=-1>De todas as Unidades Hospitalares analisadas, esta foi a que teve o menor impacto. Nesse caso, analisamos que, Leitos-Dia-Operacionais à mais, estavam sendo contabilizados na regra anterior, e em determinado momento poderíamos ter uma maior ociosidade de leitos, gerando assim, uma “_falsa_” impressão de regularidade no atendimento. Apesar de termos uma variação em comparação com as demais unidades, vemos também uma tendência de regularidade dessa diferença, chegando a um terço no ano de 2022 em comparação com o mesmo periodo do ano de 2018.</font>
+
+```{r, echo=FALSE}
+
+ltod_media_BC <- ltod_media %>%
+  dplyr::filter(unidade == "Empresa3") %>% 
+  plot_ly(x = ~ano, 
+          y = ~leito_dia_operacional, 
+          type = 'bar',
+          # mode = 'lines+markers',
+          color = ~class,
+          hovertemplate = paste('<br>Ano</b>: %{x}<br>',
+                                '<br>Variavel 2</b>: %{y}<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "Comparação de médias",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+ltod_media_BC 
+```
+## {-}
+### Tabela resumo
+```{r, echo=FALSE}
+lto_tabela <- txo_antes %>% 
+  left_join(txo_depois,by =  c('mes','unidade')) %>%
+  mutate(delta = (leito_dia_operacional.y - leito_dia_operacional.x)) %>% 
+  dplyr::select("mes","unidade", 'leito_dia_operacional.y', 'leito_dia_operacional.x', "delta" ) %>% 
+  rename("Mês" = "mes","Unidade" = "unidade", "Variavel 2 - antes" = 'leito_dia_operacional.x',
+         "Variavel 2" = 'leito_dia_operacional.y',"Delta" = "delta" ) %>% 
+  DT::datatable()
+
+lto_tabela
+
+```
+# Comportamento dos indicadores
+
+A troca de experiências, benchmarking e analises dos dados operacionais e assistenciais entre os hospitais-membros do xxxxXXXX continuou sendo fundamental para manter padrões de qualidade e indicadores operacionais/assistenciais adequados, especialmente durante a pandemia de Covid-19.
+
+Com esse contexo de padronização e reconfiguração das regras de negocio, as análises a seguir mostram a evolução de indicadores gerais de gestão operacional, sendo possível, ainda, analisá-los de acordo 
+com as regras utlizadas anteriormente, bem como as utilizadas atualmente. Em seguida, são apresentados os indicadores das unidades hospitalares Empresa1, Empresa2 e Empresa2.
+
+__*Os indicadores de gestão operacional do Sistema de Indicadores de Hospital xxxx (asdasfd) foram calculados com base nos dados de 3 unidades hospitalares corespondentes aos anos de 2018, 2019, 2020 e 2021*__
+
+<font size=-1>*Nota: Os valores apresentados para a unidade de Empresa2 são correspondentes apenas ao período de 2019 a 2021, devido a unidade em questão ter sido inaugurada apenas em 2019. Para o cálculo do delta consideramos a diferença entre os valores dos indicadores antes da mudança da regra de negócio e os valores após a mudança da regra de negócio.</font>
+
+
+# Indicador operacional geral (%) 
+
+## Unidade Empresa1 {.tabset .tabset-fade}
+
+><font size=-1>Ao analisar as alterações de regras vimos que ambas as regras seguem as mesmas tendência nos anos iniciais, assim também seu crescimento da Indicador, como consequência da diminuição dos casos de Covid-19 e do menor número de internações resultantes relacionadas às demais comorbidades. Observou-se que essa mesma tendência, em comparação aos demais anos está voltando aos contextos de 2019 e 2020 porém tendo uma súbita alteração no mês de setembro/2022 onde tivemos uma “virada” da tendência. Em comparação com os dados da xxxx vemos que a nova regra vem seguindo as mesmas variações e mudanças que os valores coletados, apesar do quantitativo ser menor, demonstrando uma sinergia entre os dados.</font>
+
+### Antes e depois de correção de regra(%)
+```{r, echo=FALSE}
+### grafico mostrando as taxas antes e depois
+
+
+txo_antes_SA <- txo_geral_mm %>% 
+  dplyr::filter(class == c('antes') & unidade == 'Empresa1' )  
+
+txo_depois_SA <- txo_geral_mm %>% 
+  dplyr::filter(class == c('depois') & unidade == 'Empresa1' )    
+  
+txo_antes_depois_SA <- 
+  plot_ly(txo_antes_SA,
+          x = txo_antes_SA$mes, 
+          y = txo_antes_SA$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_antes_SA$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>'))  %>% 
+  
+  add_trace( txo_depois_SA,
+          y = txo_depois_SA$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_depois_SA$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>')) %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+txo_antes_depois_SA
+
+
+```
+
+### Diferença percentual 
+```{r, echo=FALSE}
+### grafico mostrando o delta
+
+txo_delta_SA <- txo_geral_mm %>% 
+  dplyr::filter(class == 'delta' &  unidade == 'Empresa1') %>% 
+  plot_ly(x = ~mes, 
+          y = ~taxa_ocupacao, 
+          color = ~class,
+          type = 'bar',
+          hovertext = ~perc,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Delta</b>: %{y}%<br>',
+                                '<br>% da regra anterior</b>: %{hovertext}%<extra></extra>')  
+        )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+
+txo_delta_SA
+
+```
+
+### Comparação xxxx
+```{r, echo=FALSE}
+#graficos de comparação com xxxx por unidade
+
+comp_ano_SA <- txo_anual_xxxx %>% 
+  rbind(txo_ano %>% filter(unidade== 'Empresa1' & ano %in% c('2018','2019','2020','2021')) %>%
+          select(-"unidade" )) %>%
+  plot_ly(x = ~ano, 
+          y = ~taxa_ocupacao, 
+          split = ~class, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = ~class,
+          colors = c('#E3E005','#0D8CFF','#480CE8'),
+          hovertemplate = paste('<br>Semestre</b>: %{x}<br>',
+                                '<br>Indicador</b>: %{y}%<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+comp_ano_SA  
+
+
+
+```
+
+## {-}
+
+## Unidade Empresa2  {.tabset .tabset-fade}
+
+><font size=-1>Vemos na unidade em questão uma variação quanto a mudança de regra nos anos iniciais da pesquisa. A comparação com os dados da xxxx nos tras uma demonstração da diferença em termos quantitativos, ao olharmos para regra antiga, vemos uma aproximação com a Anhap do que agora. No comparativo com o delta analisamos essa diferença bem abaixo do eixo central em 2018, partindo para centralização nos demais anos da pesquisa</font>
+
+### Antes e depois de correção de regra(%)
+```{r, echo=FALSE}
+
+txo_antes_C <- txo_geral_mm %>% 
+  dplyr::filter(class == c('antes') & unidade == 'Empresa2' )  
+
+txo_depois_C <- txo_geral_mm %>% 
+  dplyr::filter(class == c('depois') & unidade == 'Empresa2' )    
+  
+txo_antes_depois_C <- 
+  plot_ly(txo_antes_C,
+          x = txo_antes_C$mes, 
+          y = txo_antes_C$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_antes_C$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>'))  %>% 
+  
+  add_trace( txo_depois_C,
+          y = txo_depois_C$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_depois_C$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>')) %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+txo_antes_depois_C
+
+```
+
+### Diferença percentual 
+
+```{r, echo=FALSE}
+txo_delta_C <- txo_geral_mm %>% 
+  dplyr::filter(class == 'delta' &  unidade == 'Empresa2') %>% 
+  plot_ly(x = ~mes, 
+          y = ~taxa_ocupacao, 
+          type = 'bar',
+          color = ~class,
+          hovertext = ~perc,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Delta</b>: %{y}%<br>',
+                                '<br>% da regra anterior</b>: %{hovertext}%<extra></extra>')    
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+
+txo_delta_C
+
+```
+
+### Comparação xxxx
+```{r, echo=FALSE}
+
+comp_ano_C <- txo_anual_xxxx %>% 
+  rbind(txo_ano %>% filter(unidade== 'Empresa2' & ano %in% c('2018','2019','2020','2021')) %>%
+          select(-"unidade" )) %>%
+  plot_ly(x = ~ano, 
+          y = ~taxa_ocupacao, 
+          split = ~class, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = ~class,
+          colors = c('#E3E005','#0DFFBA','#006828'),
+          hovertemplate = paste('<br>Semestre</b>: %{x}<br>',
+                                '<br>Indicador</b>: %{y}%<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+comp_ano_C  
+
+```
+## {-}
+
+## Unidade Empresa3  {.tabset .tabset-fade}
+
+><font size=-1>Diferente das demais unidades, essa em questão obteve o menor impacto em termos de diferenças do antes e depois das alterações na regra desse indicador. Essa unidade foi a que mais obteve os menores valores para o delta. Em termos de diferenciação, confirmando a menor incidência de impacto citada anteriormente. Em comparação com os dados da xxxx, vimos uma semelhança de tendência quando comparamos com a nova regra, isso nos anos de 2019, 2020 e 2021, porém em termos de valores, a dirença em comparação com a Ahanp foi basicamente a mesma, sempre tendo os dados da Anhap com maiores valores apresentados.</font>
+
+### Antes e depois de correção de regra(%)
+
+```{r, echo=FALSE}
+
+txo_antes_BC <- txo_geral_mm %>% 
+  dplyr::filter(class == c('antes') & unidade == 'Empresa3' )  
+
+txo_depois_BC <- txo_geral_mm %>% 
+  dplyr::filter(class == c('depois') & unidade == 'Empresa3' )    
+  
+txo_antes_depois_BC <- 
+  plot_ly(txo_antes_BC,
+          x = txo_antes_BC$mes, 
+          y = txo_antes_BC$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_antes_BC$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>'))  %>% 
+  
+  add_trace( txo_depois_BC,
+          y = txo_depois_BC$taxa_ocupacao, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = txo_depois_BC$class,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Indicador operacional geral</b>: %{y}%<br>')) %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+txo_antes_depois_BC
+```
+
+### Diferença percentual 
+```{r, echo=FALSE}
+
+txo_delta_BC <- txo_geral_mm %>% 
+  dplyr::filter(class == 'delta' &  unidade == 'Empresa3') %>% 
+  plot_ly(x = ~mes, 
+          y = ~taxa_ocupacao, 
+            type = 'bar',
+          color = ~class,
+          hovertext = ~perc,
+          hovertemplate = paste('<br>Mês</b>: %{x}<br>',
+                                '<br>Delta</b>: %{y}%<br>',
+                                '<br>% da regra anterior</b>: %{hovertext}%<extra></extra>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = F),
+         yaxis = list(title = "", zeroline = T))
+
+txo_delta_BC
+
+```
+
+### Comparação xxxx
+```{r, echo=FALSE}
+
+comp_ano_BC <- txo_anual_xxxx %>% 
+  rbind(txo_ano %>% filter(unidade== 'Empresa3'& ano %in% c('2018','2019','2020','2021')) %>%
+          select(-"unidade" )) %>%
+  plot_ly(x = ~ano, 
+          y = ~taxa_ocupacao, 
+          split = ~class, 
+          type = 'scatter',
+          mode = 'lines+markers',
+          color = ~class,
+          colors = c('#E3E005','#D66A06','#E32F05'),
+          hovertemplate = paste('<br>Semestre</b>: %{x}<br>',
+                                '<br>Indicador</b>: %{y}%<br>') 
+  )  %>% 
+  
+  layout(legend = list(orientation = 'h'), 
+         title = "",
+         xaxis = list(title = "", zeroline = T),
+         yaxis = list(title = "", zeroline = T))
+comp_ano_BC  
+
+```
+## {-}
