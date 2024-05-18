@@ -12,7 +12,7 @@
 - [Arquitetura de DaaS: Provisionamento e Gerenciamento de Serviços de Dados](./doc/provisionamento_daas.md)
 - [Casos de Uso do DaaS em Diferentes Setores](./doc/casos_de_uso_daas.md)
 - [Implementação do DaaS](./doc/implementacao_daas.md)
-- 
+  - [DataOPS](./doc/dataops.md)
 
 ## Links
 

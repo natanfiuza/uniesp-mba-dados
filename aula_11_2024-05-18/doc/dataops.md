@@ -1,4 +1,4 @@
-## DataOps e DaaS: Uma Abordagem Colaborativa para Dados como Serviço
+# DataOps e DaaS: Uma Abordagem Colaborativa para Dados como Serviço
 
 ## **DataOps**
 
@@ -29,10 +29,7 @@ O DataOps e o DaaS se complementam de forma sinérgica para oferecer uma soluç�
 * **DaaS fornece a infraestrutura escalável e flexível para armazenar, processar e distribuir dados de acordo com as necessidades do DataOps.**
 
 ## **Mapa Mental**
-
-<svg id="mindmap"></svg>
-
-<script>(()=>{setTimeout(()=>{const{markmap:O,mm:h}=window,M=new O.Toolbar;M.attach(h);const oe=M.render();oe.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(oe)})})()</script><script>((i,L,f,r)=>{const w=i();window.mm=w.Markmap.create("svg#mindmap",(L||w.deriveOptions)(r),f)})(()=>window.markmap,null,{"content":"DataOps e DaaS","children":[{"content":"<strong>DataOps</strong>","children":[{"content":"Automação","children":[],"payload":{"lines":"5,6"}},{"content":"Monitoramento","children":[],"payload":{"lines":"6,7"}},{"content":"Colaboração","children":[],"payload":{"lines":"7,8"}},{"content":"Governança","children":[],"payload":{"lines":"8,9"}},{"content":"Iteração","children":[],"payload":{"lines":"9,11"}}],"payload":{"lines":"3,4"}},{"content":"<strong>DaaS</strong>","children":[{"content":"Escalabilidade","children":[],"payload":{"lines":"13,14"}},{"content":"Flexibilidade","children":[],"payload":{"lines":"14,15"}},{"content":"Custos Reduzidos","children":[],"payload":{"lines":"15,16"}},{"content":"Atualizações Automáticas","children":[],"payload":{"lines":"16,18"}}],"payload":{"lines":"11,12"}},{"content":"Benefícios","children":[{"content":"Maior agilidade na entrega de dados","children":[],"payload":{"lines":"20,21"}},{"content":"Maior confiabilidade dos dados","children":[],"payload":{"lines":"21,22"}},{"content":"Melhor qualidade dos dados","children":[],"payload":{"lines":"22,23"}},{"content":"Maior satisfação do cliente","children":[],"payload":{"lines":"23,24"}},{"content":"Redução de custos","children":[],"payload":{"lines":"24,26"}}],"payload":{"lines":"18,19"}},{"content":"Aplicações","children":[{"content":"Análise de negócios","children":[],"payload":{"lines":"28,29"}},{"content":"Ciência de dados","children":[],"payload":{"lines":"29,30"}},{"content":"Machine learning","children":[],"payload":{"lines":"30,31"}},{"content":"Inteligência artificial","children":[],"payload":{"lines":"31,32"}}],"payload":{"lines":"26,27"}}],"payload":{"lines":"1,2"}},{"colorFreezeLevel":4})</script>
+![](../img/markmap_dataops_daas.png)
 
 ## Observações
 
