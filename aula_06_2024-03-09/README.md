@@ -1,4 +1,4 @@
-# Aula 07 (Data werehouse) - 2024-03-17
+# Aula 06 (SQL) - 2024-03-09
 
 
 
