@@ -66,3 +66,7 @@
 * Os serviços na nuvem oferecem uma ampla gama de benefícios para empresas e indivíduos. 
 * São escaláveis, flexíveis, seguros e podem ajudar a reduzir custos e aumentar a produtividade. 
 * Com a variedade de serviços disponíveis, é possível encontrar a solução perfeita para qualquer necessidade.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

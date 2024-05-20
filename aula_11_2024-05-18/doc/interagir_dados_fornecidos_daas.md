@@ -48,3 +48,7 @@ Uma empresa de varejo online deseja analisar dados de vendas para identificar te
 ## Conclusão
 
 O DaaS oferece uma forma poderosa e flexível para as empresas interagirem com seus dados e incorporá-los em seus processos de negócios. Através de ferramentas intuitivas, análises avançadas e integração com aplicações existentes, o DaaS permite que as empresas tomem decisões mais inteligentes, otimizem seus processos e alcancem melhores resultados.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

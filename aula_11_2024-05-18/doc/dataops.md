@@ -39,3 +39,7 @@ O DataOps e o DaaS se complementam de forma sinérgica para oferecer uma soluç�
 ## Conclusão
 
 Ao combinar os princípios do DataOps com a flexibilidade do DaaS, as empresas podem desbloquear o valor total de seus dados, impulsionando a inovação, a tomada de decisões inteligentes e o crescimento sustentável.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

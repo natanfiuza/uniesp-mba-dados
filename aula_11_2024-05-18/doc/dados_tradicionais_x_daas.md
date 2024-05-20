@@ -46,3 +46,7 @@ O DaaS abre um portal para um mundo de oportunidades para profissionais de MBA e
 * Participe de comunidades e eventos da área para se conectar com outros profissionais e se manter atualizado sobre as últimas tendências.
 * Desenvolva suas habilidades técnicas e analíticas para se tornar um especialista requisitado no mercado de DaaS.
 
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

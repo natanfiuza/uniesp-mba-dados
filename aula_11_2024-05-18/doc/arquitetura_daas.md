@@ -52,3 +52,6 @@ O DaaS abre um universo de possibilidades para os profissionais de **Ciência de
 * Este material é um ponto de partida. Explore a fundo cada componente, ferramenta e conceito para se aprofundar no universo do DaaS.
 * Mantenha-se atualizado com as últimas tendências e tecnologias do mercado para se destacar como um profissional de **Ciência de Dados** altamente qualificado.
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

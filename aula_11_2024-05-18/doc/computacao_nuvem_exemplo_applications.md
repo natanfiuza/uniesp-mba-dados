@@ -247,3 +247,7 @@
 * [https://www.cloudflare.com/learning/cloud/cloudflare-and-the-cloud/](https://www.cloudflare.com/learning/cloud/cloudflare-and-the-cloud/)
 * [https://www.infortrend.com/UserManuals/Download/c1cbd3d1-3bec-480b-bbd4-e941cc66311e](https://www.infortrend.com/UserManuals/Download/c1cbd3d1-3bec-480b-bbd4-e941cc66311e)
 * [https://cloud.google.com/functions](https://cloud.google.com/functions)
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

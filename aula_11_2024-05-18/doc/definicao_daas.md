@@ -51,4 +51,6 @@ O DaaS é apenas uma ferramenta. O verdadeiro valor reside na sua capacidade de 
 
 
 
-**Boa sorte em sua jornada no fascinante mundo do DaaS!**
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

@@ -162,3 +162,7 @@ Os profissionais de ciência de dados podem atuar em diversas áreas, incluindo:
 - **Business Intelligence (BI):** Utilizando SaaS para criar dashboards interativos e relatórios gerenciais.
 
 Com o crescimento contínuo da computação em nuvem, a demanda por especialistas que saibam navegar e tirar proveito dessas tecnologias está em constante ascensão, criando um campo fértil para profissionais bem qualificados.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)
