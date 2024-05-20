@@ -7,8 +7,41 @@ A computação em nuvem, muitas vezes envolta em mitos e equívocos, se tornou u
 
 ## O que é Computação em Nuvem?
 
-Computação em nuvem, ou simplesmente "nuvem", refere-se à entrega de serviços de computação, como servidores, armazenamento, bancos de dados, rede, software, análise e inteligência, pela internet ("a nuvem"). Em vez de possuir sua própria infraestrutura de TI ou datacenter, as empresas podem alugar acesso a qualquer coisa, desde aplicativos até armazenamento, de um provedor de serviços em nuvem.
+A **computação em nuvem**, também conhecida como **cloud computing**, é a entrega de serviços de TI - incluindo servidores, armazenamento, bancos de dados, redes, software, análise e inteligência artificial -  **sob demanda** pela internet. 
 
+Em vez de comprar e gerenciar sua própria infraestrutura de hardware e software, você **acessa esses recursos remotamente** em uma **base de pagamento conforme o uso**. Isso oferece muitas vantagens, como:
+
+* **Flexibilidade:** Aumente ou diminua os recursos de TI rapidamente para atender às suas necessidades em constante mudança.
+* **Escalabilidade:** Acomode picos de demanda sem precisar investir em hardware adicional.
+* **Eficiência de custos:** Pague apenas pelos recursos que usar.
+* **Agilidade:** Implemente novos aplicativos e serviços rapidamente.
+* **Inovação:** Acesse as mais recentes tecnologias de TI sem precisar investir em infraestrutura.
+* **Confiabilidade:** Os provedores de nuvem garantem a alta disponibilidade e segurança de seus dados.
+* **Acessibilidade:** Acesse seus dados e aplicativos de qualquer lugar com uma conexão à internet.
+
+**Tipos de serviços de computação em nuvem:**
+
+* **Infraestrutura como serviço (IaaS):** Fornece recursos de computação brutos, como servidores, armazenamento e rede.
+* **Plataforma como serviço (PaaS):** Oferece uma plataforma para desenvolver, implantar e gerenciar aplicativos sem a necessidade de gerenciar a infraestrutura subjacente.
+* **Software como serviço (SaaS):** Fornece aplicativos prontos para usar que você pode acessar pela internet, como email, CRM e software de contabilidade.
+
+**Modelos de implantação de computação em nuvem:**
+
+* **Nuvem pública:** Os recursos são fornecidos por um provedor de serviços de terceiros e estão disponíveis para qualquer pessoa na internet.
+* **Nuvem privada:** Os recursos são fornecidos por um provedor de serviços de terceiros, mas são dedicados a uma única organização.
+* **Nuvem híbrida:** Uma combinação de nuvem pública e privada.
+
+**Quem usa a computação em nuvem?**
+
+Empresas de todos os tamanhos usam a computação em nuvem, desde startups até grandes empresas. A computação em nuvem é especialmente popular para pequenas empresas porque oferece uma maneira acessível e escalável de obter os recursos de TI de que precisam para crescer.
+
+**Exemplos de provedores de serviços de computação em nuvem:**
+
+* Amazon Web Services (AWS)
+* Microsoft Azure
+* Google Cloud Platform
+* IBM Cloud
+* Oracle Cloud Infrastructure
 
 ## Desmascarando os Mitos
 
