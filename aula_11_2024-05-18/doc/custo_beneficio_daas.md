@@ -39,3 +39,6 @@ O **DaaS** se consolida como uma ferramenta poderosa para otimizar custos, impul
 * **Calcule o ROI (Retorno sobre Investimento) do DaaS** para embasar a sua decisão de forma concreta.
 * **Negocie com diferentes provedores de DaaS** para obter as melhores condições e serviços para a sua empresa.
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

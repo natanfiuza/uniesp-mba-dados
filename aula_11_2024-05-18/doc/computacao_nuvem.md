@@ -220,3 +220,6 @@ A computação em nuvem não é apenas uma tecnologia, mas um paradigma que tran
 
 Essa visão abrangente prepara os alunos para abordar a computação em nuvem de maneira estratégica, alavancando seu potencial para promover o crescimento e a competitividade de suas organizações.
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

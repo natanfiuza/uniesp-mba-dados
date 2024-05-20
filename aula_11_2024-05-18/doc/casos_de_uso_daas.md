@@ -182,3 +182,7 @@ Se você está considerando implementar o DaaS em sua empresa, é importante ava
 * A implementação do DaaS pode ser complexa e é importante buscar a orientação de especialistas experientes.
 
 Espero que esta análise detalhada dos casos de uso do DaaS em diferentes setores tenha sido útil. Se você tiver alguma dúvida ou precisar de mais informações, não hesite em entrar em contato.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

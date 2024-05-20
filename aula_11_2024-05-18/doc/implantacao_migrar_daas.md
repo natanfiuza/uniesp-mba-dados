@@ -57,3 +57,7 @@ Ao seguir estas etapas e considerar cuidadosamente os aspectos de segurança, co
 * Treine seus usuários e forneça suporte contínuo.
 
 Com o planejamento e a execução adequados, o DaaS pode ser uma ferramenta valiosa para ajudar sua empresa a alcançar seus objetivos de negócios.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

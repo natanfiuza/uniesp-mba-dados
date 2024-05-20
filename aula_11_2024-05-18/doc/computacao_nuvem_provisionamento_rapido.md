@@ -138,3 +138,7 @@ A nuvem oferece flexibilidade, escalabilidade e custo-efetividade para empresas 
 ## Comece a usar a computação em nuvem hoje mesmo
 
 Diversos provedores de serviços em nuvem, como Amazon Web Services (AWS), Microsoft Azure e Google Cloud Platform (GCP), oferecem planos gratuitos ou de avaliação para que você possa testar seus serviços e explorar os benefícios da nuvem para sua empresa.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

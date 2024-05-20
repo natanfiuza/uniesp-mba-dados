@@ -51,3 +51,7 @@
 ## Conclusão
 
 As redes em nuvem são uma parte essencial da computação em nuvem e oferecem uma variedade de benefícios para as empresas. Ao usar redes em nuvem, as empresas podem escalar facilmente, aumentar a agilidade, reduzir custos, melhorar a segurança e aumentar a confiabilidade.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

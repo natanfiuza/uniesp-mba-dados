@@ -95,3 +95,7 @@ Instância virtual que executa aplicativos ou serviços para usuários em um amb
 * Avalie suas necessidades e explore as diversas soluções disponíveis para encontrar a melhor opção para o seu negócio.
 * Esta lista não é exaustiva, existindo diversos outros casos de uso para servidores na nuvem.
 * A escolha do tipo de servidor e provedor de nuvem dependerá das suas necessidades específicas e objetivos de negócio.
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

@@ -104,3 +104,8 @@ Algumas das arquiteturas de referência mais populares incluem:
 ## Mapa mental
 
 ![](../img/markmap_provisionamento_daas.md.png)
+
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

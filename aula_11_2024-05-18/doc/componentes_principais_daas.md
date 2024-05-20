@@ -66,3 +66,7 @@ O DaaS é uma jornada, não um destino. À medida que suas necessidades de dados
 * **10 Casos de Uso do Data as a Service (DaaS) que Transformam Negócios** ([https://dataconomy.com/2022/11/10/data-as-a-service-daas-examples-companies/](https://dataconomy.com/2022/11/10/data-as-a-service-daas-examples-companies/))
 
 
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

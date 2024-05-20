@@ -157,3 +157,6 @@ A computação em nuvem é uma ferramenta poderosa, mas é importante utilizá-l
 A computação em nuvem oferece um vasto leque de oportunidades para profissionais de ciência de dados. Ao investir em aprendizado contínuo e na prática de habilidades, você estará bem posicionado para
 
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

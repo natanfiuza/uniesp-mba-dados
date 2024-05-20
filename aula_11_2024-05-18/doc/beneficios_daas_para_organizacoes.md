@@ -50,3 +50,6 @@ O DaaS se configura como uma ferramenta poderosa para as organizações que busc
 
 O DaaS é apenas uma ferramenta. O sucesso da sua implementação depende de uma visão estratégica, planejamento cuidadoso e execução impecável.
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

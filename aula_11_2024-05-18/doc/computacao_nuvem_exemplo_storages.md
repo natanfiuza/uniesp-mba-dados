@@ -152,3 +152,7 @@ O armazenamento em nuvem oferece um universo de possibilidades para empresas de 
 * **[https://aws.amazon.com/pt/what-is/cloud-storage/](https://aws.amazon.com/pt/what-is/cloud-storage/)**
 * **[https://azure.microsoft.com/pt-br/resources/cloud-computing-dictionary/what-is-cloud-storage](https://azure.microsoft.com/pt-br/resources/cloud-computing-dictionary/what-is-cloud-storage)**
 * **[https://aws.amazon.com/pt/what-is/cloud-storage/](https://aws.amazon.com/pt/what-is/cloud-storage/)**
+
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)

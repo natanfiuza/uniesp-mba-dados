@@ -81,3 +81,6 @@ Para os profissionais da área, o DaaS oferece um leque de oportunidades empolga
 
 Aprofunde seus conhecimentos em DaaS através de cursos, workshops, certificações e participação em comunidades da área.
 
+---
+
+[Home 🏠](../../README.md) | [Anotações](../anotacoes.md)
