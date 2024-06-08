@@ -36,8 +36,8 @@
 ## Links
 
 
-- [Repositorio com a Aula da Professora](https://github.com/laysabelici/data_as_a_servcie)
->> Atenção o "servcie" do nome do respositório está estrito errado pode ser alterado e o link vai mudar.
+- [Repositorio com a Aula da Professora](https://github.com/laysabelici/data_as_a_service)
+
 
   - Material do 1 do link: [Power Point DaaS (pptx original)](./doc/DAAS_PT1.pptx) , [Power Point DaaS (pdf)](./doc/DAAS_PT1.pdf)
 -----
