@@ -14,10 +14,11 @@
 
 ### AWS Redshift
 - [O que é AWS Redshift](./doc/aws_redshift.md)
+- [Melhores práticas com Amazon Redshift](./redshift_melhores_praticas.md)
 - [A tabela `pg_table_def`](./doc/redshift_pg_table_def.md)
 - [Coluna DISTKEY da tabela pg_table_def](./doc/redshift_pg_table_def_distkey.md)
 - [Coluna SERTKEY da tabela pg_table_def](./doc/redshift_pg_table_def_distkey.md)
-- [Melhores práticas de consulta para o Amazon Redshift](./doc/query-best-practices-redshift.pdf)
+- [Melhores práticas de consulta para o Amazon Redshift (PDF)](./doc/query-best-practices-redshift.pdf)
 
 ## Links
 

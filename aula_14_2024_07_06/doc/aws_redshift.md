@@ -9,4 +9,4 @@ Em resumo, o AWS Redshift é ideal para companhias que necessitam de um data war
 
 ## Veja também
 
-- [Melhores práticas com Amazon Redshift: Arquitetura, organização e otimização de performance](https://medium.com/@alice_thomaz/guia-do-amazon-redshift-arquitetura-organiza%C3%A7%C3%A3o-e-otimiza%C3%A7%C3%A3o-de-performance-394ee0394fbb)
+* [Melhores práticas com Amazon Redshift: Arquitetura, organização e otimização de performance (detalhes e exemplos)](./redshift_melhores_praticas.md)
