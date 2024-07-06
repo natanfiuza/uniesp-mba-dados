@@ -47,5 +47,5 @@ Nesse caso, a ordenação dos dados em disco por `order_date` pode melhorar o de
 ## Recursos adicionais
 
 * [Documentação do Amazon Redshift sobre PG_TABLE_DEF](https://docs.aws.amazon.com/pt_br/redshift/latest/dg/r_PG_TABLE_DEF.html) 
-* Documentação do Amazon Redshift sobre DISTSTYLE, DISTKEY e SORTKEY [URL inválido removido]
+* [Documentação do Amazon Redshift sobre DISTSTYLE, DISTKEY e SORTKEY](https://docs.aws.amazon.com/pt_br/redshift/latest/dg/r_ALTER_MATERIALIZED_VIEW-DISTSTYLE-SORTKEY-examples.html) 
 * Melhores práticas para dimensionamento e desempenho no Amazon Redshift [URL inválido removido]
