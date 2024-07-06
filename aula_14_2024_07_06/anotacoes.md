@@ -7,6 +7,8 @@
 - [O que é um Data wharehouse](./doc/data_warehouse.md)
 - [Arquitetura de hardware vertical x horizontal](./doc/data_warehouse_arquitetura_vertical_x_horizontal.md)
 - [Distribuição de Processamento em um File System com Cluster](./doc/file_system_cluster.md)
+- [DW Analítico](./doc/datawarehouse_analitico.md)
+- [DW Operacional](./doc/datawarehouse_operacional.md)
 - [Chave natural](./doc/chave_natural.md)
 - [Chave substituta](./doc/chave_substituta.md)
 
@@ -14,6 +16,7 @@
 
 
 - [Repositorio com a Aula da Professora](https://github.com/laysabelici/dw-redshift)
+- [Repositório em ZIP](./doc/dw-redshift-main.zip)
 
 -----
 
