@@ -2,7 +2,13 @@
 
 ## Índice 
 
-### --
+### Data Wharehouse
+
+- [O que é um Data wharehouse](./doc/data_warehouse.md)
+- [Arquitetura de hardware vertical x horizontal](./doc/data_warehouse_arquitetura_vertical_x_horizontal.md)
+- [Distribuição de Processamento em um File System com Cluster](./doc/file_system_cluster.md)
+- [Chave natural](./doc/chave_natural.md)
+- [Chave substituta](./doc/chave_substituta.md)
 
 ## Links
 
