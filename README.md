@@ -23,6 +23,10 @@
 
 - [Aula 11 - 2024-05-18](./aula_11_2024-05-18/README.md)
 
+- [Aula 12 - 2024-06-08](./aula_11_2024-05-18/README.md)
+- [Aula 13 - 2024-06-15](./aula_11_2024-05-18/README.md)
+- [Aula 14 - 2024-07-06](./aula_11_2024-05-18/README.md)
+
 ## Livros
 
 * [T-SQL Fundamentals, Fourth Edition.pdf](./doc/T-SQL_Fundamentals_Fourth_Edition.pdf)
