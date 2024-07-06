@@ -11,6 +11,8 @@
 - [DW Operacional](./doc/datawarehouse_operacional.md)
 - [Chave natural](./doc/chave_natural.md)
 - [Chave substituta](./doc/chave_substituta.md)
+- [Modelo dimensional](./doc/modelo_dimensional.md)
+- [Chave primaria e Chave estrangeira](./doc/chave_primaria_e_estrangeira.md)
 
 ### AWS Redshift
 - [O que é AWS Redshift](./doc/aws_redshift.md)
@@ -26,6 +28,10 @@
 - [Repositorio com a Aula da Professora](https://github.com/laysabelici/dw-redshift)
 - [Repositório em ZIP](./doc/dw-redshift-main.zip)
 
+## Livro
+
+- [Engenharia de Analytics](https://www.engdeanalytics.com.br/intro.html) 
+- [Engenharia de Analytics no GitHub](https://github.com/dpavancini/eng-de-analytics-livro)
 
 -----
 
