@@ -1,4 +1,4 @@
-# Aula 11 (DBaaS: Database as a Service) 2024-05-18
+# Aula 12 (DBaaS: Database as a Service) 2024-06-08
 
 ## Índice 
 
@@ -16,7 +16,6 @@
 - [Elicitação de Requisitos (Coleta de informações)](./doc/daas_er.md)
 - [Documentação de Requisitos](./doc/daas_dr.md)
 - [Validação de Requisitos](./doc/daas_vr.md)
-- []()
 
 
 ## Links
