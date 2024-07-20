@@ -36,3 +36,5 @@ Em resumo, o Apache Spark oferece uma gama abrangente de mecanismos para garanti
 Além dos mecanismos mencionados acima, é importante destacar que a tolerância a falhas no Spark também depende de outros fatores, como a escolha do hardware e software, a configuração do cluster e as práticas de desenvolvimento de software.
 
 Para se aprofundar no assunto, consulte a [documentação oficial](https://medium.com/@omarlaraqui/how-apache-spark-is-fault-tolerant-89edfb27145b) do Apache Spark sobre tolerância a falhas
+
+[⬅️ Voltar](../apache_spark.md)

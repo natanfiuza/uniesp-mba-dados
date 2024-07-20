@@ -29,3 +29,4 @@ Se você está interessado em aprender mais sobre o Apache Spark, existem divers
 
 **Em resumo, o Apache Spark é um framework poderoso e versátil para processamento de big data que oferece diversas vantagens sobre o Apache Hadoop, como maior velocidade, escalabilidade e facilidade de uso.**
 
+[⬅️ Voltar](../apache_spark.md)

@@ -29,6 +29,8 @@ _ [_ula 02 _ 2_23-12-02](./aula_02_2023_12_16/README.md)
 
 - [Aula 14 - 2024-07-06](./aula_14_2024_07_06/README.md)
 
+- [Aula 15 - 2024-07-20](./aula_15_2024_07_20/README.md)
+
 ## Livros
 
 * [T-SQL Fundamentals, Fourth Edition.pdf](./doc/T-SQL_Fundamentals_Fourth_Edition.pdf)
@@ -37,6 +39,9 @@ _ [_ula 02 _ 2_23-12-02](./aula_02_2023_12_16/README.md)
 * [Postgresql - Banco de Dados Para Aplicacoes Web Modernas - Casa Do Codigo](./aula_01_2023-12-02/doc/Postgresql-Banco-de-Dados-Para-Aplicacoes-Web-Modernas-Casa-Do-Codigo.pdf)
 * [PLSQL Domine a linguagem do banco de dados Oracle](./aula_01_2023-12-02/doc/PLSQL-Domine-a-linguagem-do-banco-de-dados-Oracle.pdf)
 * [Projeto de banco de dados](./aula_01_2023-12-02/doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
+* [Fundamentos de Engenharia de Dados](./doc/Fundamentos-Engenharia-de-Dados.pdf)
+* [Deep Learning Book](https://www.deeplearningbook.com.br/)
+* [Engenharia de Analytics](https://www.engdeanalytics.com.br/intro.html) | [Engenharia de Analytics no GitHub](https://github.com/dpavancini/eng-de-analytics-livro)  
 
 ## Artigos
 

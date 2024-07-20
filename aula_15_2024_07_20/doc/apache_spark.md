@@ -93,23 +93,23 @@ O Apache Spark se destaca para computação distribuída, impulsionando análise
 
 ## Perguntas sobre Apache Spark
 
-1. O que é Apache Spark e qual é seu principal objetivo?
-2. Quais as principais vantagens do Apache Spark em relação a outros frameworks de Big Data?
-3. Quais os principais módulos do Spark e suas funcionalidades?
-4. Explique a arquitetura de Apache Spark, incluindo os papéis do driver, executor e cluster manager.
-5. Quais as diferentes maneiras de executar o Apache Spark?
-6. O que é um RDD (Resilient Distributed Dataset) e quais são suas principais características?
-7. Qual a diferença entre DataFrame e Dataset no contexto do Spark?
+1. [O que é Apache Spark e qual é seu principal objetivo?](./spark_perguntas/pergunta_1.md)
+2. [Quais as principais vantagens do Apache Spark em relação a outros frameworks de Big Data?](./spark_perguntas/pergunta_2.md)
+3. [Quais os principais módulos do Spark e suas funcionalidades?](./spark_perguntas/pergunta_3.md)
+4. [Explique a arquitetura de Apache Spark, incluindo os papéis do driver, executor e cluster manager.](./spark_perguntas/pergunta_4.md)
+5. [Quais as diferentes maneiras de executar o Apache Spark?](./spark_perguntas/pergunta_5.md)
+6. [O que é um RDD (Resilient Distributed Dataset) e quais são suas principais características?](./spark_perguntas/pergunta_6.md)
+7. [Qual a diferença entre DataFrame e Dataset no Apache Spark?](./spark_perguntas/pergunta_7.md)
 8. Como o Apache Spark realiza a avaliação preguiçosa (lazy evaluation) e quais são as vantagens dessa abordagem?
-9. Como o Apache Spark garante a tolerância a falhas em um ambiente distribuído?
-10. O que é Spark SQL e como ele se integra com outras ferramentas de dados?
-11. Como o Spark SQL se integra com bancos de dados e formatos de dados diferentes?
-12. Descreva como Spark Streaming permite o processamento de dados em tempo real.
-13. Como o Spark Streaming processa dados em tempo real com baixa latência?
-14. Quais são algumas das principais funcionalidades oferecidas pela biblioteca MLlib do Spark?
-15. Quais os principais algoritmos de Machine Learning disponíveis no MLlib?
-16. Explique o que é GraphX e como ele pode ser utilizado para análise de grafos.
-17. Como o GraphX representa e processa grafos complexos?
+9. [Como o Apache Spark garante a tolerância a falhas em um ambiente distribuído?](./spark_perguntas/pergunta_9.md)
+10. [O que é Spark SQL e como ele se integra com outras ferramentas de dados?](./spark_perguntas/pergunta_10.md)
+11. [Como o Spark SQL se integra com bancos de dados e formatos de dados diferentes?](./spark_perguntas/pergunta_11.md)
+12. [Descreva como Spark Streaming permite o processamento de dados em tempo real.](./spark_perguntas/pergunta_12.md)
+13. [Como o Spark Streaming processa dados em tempo real com baixa latência?](./spark_perguntas/pergunta_13.md)
+14. [Quais são algumas das principais funcionalidades oferecidas pela biblioteca MLlib do Spark?](./spark_perguntas/pergunta_14.md)
+15. [Quais os principais algoritmos de Machine Learning disponíveis no MLlib?](./spark_perguntas/pergunta_15.md)
+16. [Explique o que é GraphX e como ele pode ser utilizado para análise de grafos.](./spark_perguntas/pergunta_16.md)
+17. [Como o GraphX representa e processa grafos complexos?](./spark_perguntas/pergunta_17.md)
 18. Cite e explique um caso de uso específico onde o Apache Spark pode ser aplicado para análise de dados em tempo real.
 19. Quais as ferramentas e bibliotecas de visualização de dados que podem ser utilizadas com o Spark?
 
@@ -118,11 +118,13 @@ Essas perguntas cobrem aspectos fundamentais do Apache Spark, sua arquitetura, f
 
 ## Para saber mais sobre o Apache Spark
 
-* [**Site Oficial do Apache Spark**](https://spark.apache.org/docs/latest/)
+* [**Site Oficial do Apache Spark**](https://spark.apache.org/)
 * [**Documentação do Apache Spark**](https://spark.apache.org/docs/latest/)
 * [**Curso Gratuito de Apache Spark na Udemy**](https://www.udemy.com/course/sparkstarterkit/)
 * [**Comunidade do Apache Spark no Meetup**](https://www.meetup.com/topics/apache-spark/)
-* [**Site oficial do Apache Spark**](https://spark.apache.org/docs/latest/)
-* [**Documentação do Apache Spark**](https://spark.apache.org/docs/latest/)
 * [**Curso online sobre Apache Spark**](https://www.coursera.org/specializations/big-data)
+* [**Documentação oficial da MLlib**](https://spark.apache.org/docs/latest/ml-guide.html)
+* [**Curso sobre MLlib na Alura**](https://www.alura.com.br/formacao-apache-spark-python)
+* [**Artigo sobre Engenharia de Recursos com MLlib**](https://learn.microsoft.com/en-us/azure/machine-learning/?view=azureml-api-2)
+
 * **Livro "Apache Spark: The Definitive Guide"** 

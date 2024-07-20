@@ -65,3 +65,5 @@ Existem diversas maneiras de executar o Apache Spark, cada uma com suas vantagen
 * [Tutorial: Carregar dados & executar consultas com Apache Spark – Azure HDInsight](https://learn.microsoft.com/pt-br/azure/hdinsight/spark/apache-spark-load-data-run-query)
 
 A escolha da melhor maneira de executar o Apache Spark dependerá das suas necessidades específicas. É importante considerar fatores como tamanho do conjunto de dados, tipo de tarefa, orçamento e conhecimento técnico.
+
+[⬅️ Voltar](../apache_spark.md)

@@ -44,5 +44,7 @@ O Apache Spark se destaca como um framework de Big Data por diversos motivos, pr
 
 Essas vantagens fazem do Spark uma escolha popular para empresas e organizações que precisam processar e analisar grandes volumes de dados de forma eficiente e eficaz.
 
+[⬅️ Voltar](../apache_spark.md)
+
 
 
