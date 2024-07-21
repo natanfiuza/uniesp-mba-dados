@@ -100,7 +100,7 @@ O Apache Spark se destaca para computação distribuída, impulsionando análise
 5. [Quais as diferentes maneiras de executar o Apache Spark?](./spark_perguntas/pergunta_5.md)
 6. [O que é um RDD (Resilient Distributed Dataset) e quais são suas principais características?](./spark_perguntas/pergunta_6.md)
 7. [Qual a diferença entre DataFrame e Dataset no Apache Spark?](./spark_perguntas/pergunta_7.md)
-8. Como o Apache Spark realiza a avaliação preguiçosa (lazy evaluation) e quais são as vantagens dessa abordagem?
+8. [Como o Apache Spark realiza a avaliação preguiçosa (lazy evaluation) e quais são as vantagens dessa abordagem?](./spark_perguntas/pergunta_8.md)
 9. [Como o Apache Spark garante a tolerância a falhas em um ambiente distribuído?](./spark_perguntas/pergunta_9.md)
 10. [O que é Spark SQL e como ele se integra com outras ferramentas de dados?](./spark_perguntas/pergunta_10.md)
 11. [Como o Spark SQL se integra com bancos de dados e formatos de dados diferentes?](./spark_perguntas/pergunta_11.md)
