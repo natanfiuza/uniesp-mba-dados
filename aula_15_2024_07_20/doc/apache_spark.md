@@ -110,9 +110,9 @@ O Apache Spark se destaca para computação distribuída, impulsionando análise
 15. [Quais os principais algoritmos de Machine Learning disponíveis no MLlib?](./spark_perguntas/pergunta_15.md)
 16. [Explique o que é GraphX e como ele pode ser utilizado para análise de grafos.](./spark_perguntas/pergunta_16.md)
 17. [Como o GraphX representa e processa grafos complexos?](./spark_perguntas/pergunta_17.md)
-18. Cite e explique um caso de uso específico onde o Apache Spark pode ser aplicado para análise de dados em tempo real.
-19. Quais as ferramentas e bibliotecas de visualização de dados que podem ser utilizadas com o Spark?
-
+18. [Cite e explique um caso de uso específico onde o Apache Spark pode ser aplicado para análise de dados em tempo real.](./spark_perguntas/pergunta_18.md)
+19. [Quais as ferramentas e bibliotecas de visualização de dados que podem ser utilizadas com o Spark?](./spark_perguntas/pergunta_19.md)
+20. [É possível usar o Apache Spark Notebook em produção?](./spark_perguntas/pergunta_20.md)
 
 Essas perguntas cobrem aspectos fundamentais do Apache Spark, sua arquitetura, funcionalidades e aplicações, proporcionando uma compreensão abrangente do framework.
 
