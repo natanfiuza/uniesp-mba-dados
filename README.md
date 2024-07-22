@@ -43,7 +43,7 @@
 * [Deep Learning Book](https://www.deeplearningbook.com.br/)
 * [Engenharia de Analytics](https://www.engdeanalytics.com.br/intro.html) | [Engenharia de Analytics no GitHub](https://github.com/dpavancini/eng-de-analytics-livro)  
 * [Data Science: A First Introduction](https://datasciencebook.ca/)
-
+* [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
 
 ## Artigos
 
