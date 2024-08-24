@@ -59,28 +59,69 @@ A escolha dos KPIs depende dos objetivos específicos do negócio e das caracter
 
 ## Exemplos de KPIs em diferentes etapas do pipeline
 
-* **Extração** Volume de dados extraídos, taxa de erro na extração, tempo de resposta da fonte de dados.
-* **Transformação** Tempo médio de transformação, número de transformações aplicadas, taxa de sucesso na transformação, quantidade de dados transformados.
-* **Carregamento** Tempo médio de carregamento, volume de dados carregados, taxa de erro no carregamento, tamanho dos lotes carregados.
+* **Extração** 
+    
+    Volume de dados extraídos, taxa de erro na extração, tempo de resposta da fonte de dados.
+
+* **Transformação** 
+    
+    Tempo médio de transformação, número de transformações aplicadas, taxa de sucesso na transformação, quantidade de dados transformados.
+
+* **Carregamento** 
+    
+    Tempo médio de carregamento, volume de dados carregados, taxa de erro no carregamento, tamanho dos lotes carregados.
 
 ## Como escolher os KPIs certos?
 
-* **Alinhamento com os Objetivos de Negócio** Os KPIs devem estar diretamente relacionados aos objetivos que a empresa deseja alcançar com os dados.
-* **Relevância** Os KPIs devem ser relevantes para as etapas e componentes do pipeline que são mais críticos para o sucesso do negócio.
-* **Mensurabilidade** Os KPIs devem ser quantificáveis e facilmente mensuráveis.
-* **Acessibilidade** Os dados para calcular os KPIs devem ser facilmente acessíveis e coletados.
-* **Especificidade** Os KPIs devem ser específicos o suficiente para identificar problemas e oportunidades de melhoria.
+* **Alinhamento com os Objetivos de Negócio** 
+    
+    Os KPIs devem estar diretamente relacionados aos objetivos que a empresa deseja alcançar com os dados.
+
+* **Relevância** 
+    
+    Os KPIs devem ser relevantes para as etapas e componentes do pipeline que são mais críticos para o sucesso do negócio.
+
+* **Mensurabilidade** 
+    
+    Os KPIs devem ser quantificáveis e facilmente mensuráveis.
+
+* **Acessibilidade** 
+    
+    Os dados para calcular os KPIs devem ser facilmente acessíveis e coletados.
+
+* **Especificidade** 
+    
+    Os KPIs devem ser específicos o suficiente para identificar problemas e oportunidades de melhoria.
 
 ## Ferramentas para Monitoramento de KPIs
 
-* **Ferramentas de Orquestração** Apache Airflow, Prefect, Luigi.
-* **Plataformas de Monitoramento** Grafana, Prometheus, Datadog.
-* **Cloud Providers** Google Cloud Monitoring, AWS CloudWatch, Azure Monitor.
+* **Ferramentas de Orquestração** 
+    
+    Apache Airflow, Prefect, Luigi.
+
+* **Plataformas de Monitoramento** 
+    
+    Grafana, Prometheus, Datadog.
+
+* **Cloud Providers** 
+    
+    Google Cloud Monitoring, AWS CloudWatch, Azure Monitor.
 
 ## É agora o que fazer?
 
-* **Definição dos KPIs** Identificar os KPIs mais relevantes para o seu negócio e pipeline.
-* **Implementação do Monitoramento** Configurar as ferramentas de monitoramento para coletar e visualizar os dados dos KPIs.
-* **Análise dos Resultados** Analisar os dados dos KPIs regularmente para identificar tendências e tomar decisões.
-* **Otimização do Pipeline** Utilizar os insights obtidos através dos KPIs para otimizar o desempenho do pipeline.
+* **Definição dos KPIs** 
+    
+    Identificar os KPIs mais relevantes para o seu negócio e pipeline.
+
+* **Implementação do Monitoramento** 
+    
+    Configurar as ferramentas de monitoramento para coletar e visualizar os dados dos KPIs.
+
+* **Análise dos Resultados** 
+    
+    Analisar os dados dos KPIs regularmente para identificar tendências e tomar decisões.
+
+* **Otimização do Pipeline** 
+    
+    Utilizar os insights obtidos através dos KPIs para otimizar o desempenho do pipeline.
 
