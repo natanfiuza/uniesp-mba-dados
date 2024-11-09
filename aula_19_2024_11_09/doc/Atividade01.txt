@@ -1,0 +1,30 @@
+Característica para identificar se é cachorro ou porco.
+
+Tipo de Pêlo
+1-longo
+0-curto
+Altura da Perna
+1-longo
+0-curto
+Se late ou não
+1-late
+0-não late
+
+
+# Criando nossa base de dados
+porco1 = [0, 0, 0]
+porco2 = [1, 0, 0]
+porco3 = [1, 1, 0]
+cachorro1 = [0, 1, 1]
+cachorro2 = [1, 0, 1]
+cachorro3 = [1, 1, 1]
+
+dados = [
+    porco1,
+    porco2,
+    porco3,
+    cachorro1,
+    cachorro2,
+    cachorro3]
+
+classes = [1, 1, 1, 0, 0, 0]
