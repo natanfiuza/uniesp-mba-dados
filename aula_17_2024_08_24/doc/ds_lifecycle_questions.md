@@ -34,4 +34,3 @@
 
 **Observação:** Essas perguntas podem ser adaptadas para diferentes níveis de conhecimento e aprofundamento no tema. Elas podem servir como base para estudos, entrevistas, ou até mesmo para a criação de materiais didáticos.
 
-**Gostaria de explorar alguma dessas perguntas com mais profundidade?** 
