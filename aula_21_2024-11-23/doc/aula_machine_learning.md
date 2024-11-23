@@ -10,11 +10,198 @@ Compreender os conceitos-chave de Machine Learning (ML) e suas aplicações no m
 
 ### Módulo 1: Introdução ao Machine Learning
 
-* **Conceitos básicos:** O que é Machine Learning? Tipos de aprendizado (supervisionado, não supervisionado, por reforço);
-* **Algoritmos mais utilizados:** Regressão Linear e Logística, Árvores de Decisão, Random Forest, Support Vector Machines (SVM), K-Nearest Neighbors (KNN), K-Means, Redes Neurais;
-* **Etapas de um projeto de Machine Learning:** Coleta e preparação de dados, seleção de features, escolha do modelo, treinamento, avaliação e otimização.
+#### **Conceitos básicos:** O que é Machine Learning?, Tipos de aprendizado (supervisionado, não supervisionado, por reforço)
+
+**O que é Machine Learning?**
+
+Machine Learning, ou Aprendizado de Máquina, é um ramo da Inteligência Artificial (IA) que permite que os sistemas aprendam com dados, identifiquem padrões e tomem decisões com o mínimo de intervenção humana. Em vez de serem explicitamente programados para cada tarefa, os algoritmos de Machine Learning usam dados como entrada para construir modelos que permitem realizar previsões, tomar decisões e descobrir insights.
+
+**Analogia:** Imagine ensinar uma criança a reconhecer gatos. Em vez de descrever todas as características de um gato, você mostra diversas fotos de gatos, e a criança, com o tempo, aprende a identificá-los por conta própria. O Machine Learning funciona de forma similar: o algoritmo "aprende" com os dados fornecidos, identificando padrões e características relevantes.
+
+**Tipos de Aprendizado:**
+
+Existem três principais tipos de aprendizado em Machine Learning:
+
+**1. Aprendizado Supervisionado:**
+
+* **Dados Rotulados:**  O algoritmo recebe um conjunto de dados com exemplos e as respectivas "respostas" corretas (rótulos). 
+* **Objetivo:** Aprender a mapear as entradas para as saídas corretas, generalizando esse conhecimento para novos dados.
+* **Exemplos:**
+    * **Classificação:** Prever se um email é spam ou não spam.
+    * **Regressão:** Prever o preço de um imóvel com base em suas características.
+* **Algoritmos:** Regressão Linear, Regressão Logística, Árvores de Decisão, Support Vector Machines (SVM).
+
+![](./modulo_01_conceitobasico_img1.png)
+
+**2. Aprendizado Não Supervisionado:**
+
+* **Dados Não Rotulados:** O algoritmo recebe um conjunto de dados sem as "respostas" corretas.
+* **Objetivo:** Descobrir padrões, estruturas e relações nos dados por conta própria.
+* **Exemplos:**
+    * **Agrupamento:** Segmentar clientes em grupos com base em seus comportamentos de compra.
+    * **Redução de Dimensionalidade:** Reduzir o número de variáveis em um conjunto de dados, mantendo as informações mais importantes.
+* **Algoritmos:** K-Means, Principal Component Analysis (PCA), Apriori.
+
+![](./modulo_01_conceitobasico_img2.png)
+
+**3. Aprendizado por Reforço:**
+
+* **Interação com o Ambiente:** O algoritmo aprende por meio de tentativa e erro, interagindo com um ambiente e recebendo feedback na forma de recompensas ou penalidades.
+* **Objetivo:** Aprender a tomar ações que maximizem as recompensas ao longo do tempo.
+* **Exemplos:**
+    * **Jogos:**  Treinar um agente para jogar um jogo, como xadrez ou Go.
+    * **Robótica:**  Controlar um robô para navegar em um ambiente desconhecido.
+* **Aplicações:** AlphaGo (jogo de Go), carros autônomos, robôs industriais.
+
+![](./modulo_01_conceitobasico_img3.png)
+
+**Em Resumo:**
+
+O tipo de aprendizado de máquina utilizado depende do problema que se deseja resolver e da natureza dos dados disponíveis. Cada tipo de aprendizado possui seus próprios algoritmos e técnicas, e a escolha do método mais adequado é crucial para o sucesso do projeto.
+
+
+#### **Algoritmos mais utilizados:** Regressão Linear e Logística, Árvores de Decisão, Random Forest, Support Vector Machines (SVM), K-Nearest Neighbors (KNN), K-Means, Redes Neurais
+
+**1. Regressão Linear:**
+
+* **Objetivo:** Modelar a relação entre uma variável dependente (alvo) e uma ou mais variáveis independentes (preditoras) como uma linha reta.
+* **Tipo de Problema:** Regressão (previsão de valores numéricos contínuos).
+* **Exemplo:** Prever o preço de um imóvel com base em seu tamanho, localização e número de quartos.
+* **Equação:** y = b0 + b1*x1 + b2*x2 + ... + bn*xn (onde y é a variável alvo, x1, x2,... xn são as variáveis preditoras, e b0, b1, b2,... bn são os coeficientes da equação).
+
+![](./modulo_01_algoritimos_img1.png)
+
+**2. Regressão Logística:**
+
+* **Objetivo:**  Prever a probabilidade de uma instância pertencer a uma determinada classe (categorização). Apesar do nome "regressão", é um algoritmo de classificação.
+* **Tipo de Problema:** Classificação (previsão de classes categóricas).
+* **Exemplo:**  Prever se um cliente irá cancelar sua assinatura (churn) com base em seu histórico de compras e interações.
+* **Função Sigmóide:**  A regressão logística usa uma função sigmóide para transformar a saída linear em uma probabilidade entre 0 e 1.
+
+![](./modulo_01_algoritimos_img2.png)
+
+**3. Árvores de Decisão:**
+
+* **Objetivo:** Criar um modelo em forma de árvore para classificar ou prever valores com base em uma série de decisões.
+* **Tipo de Problema:** Classificação e Regressão.
+* **Exemplo:**  Classificar um animal como mamífero, ave ou réptil com base em suas características.
+* **Estrutura:**  A árvore é composta por nós (decisões), ramos (caminhos) e folhas (resultados).
+* **Vantagem:** Fácil interpretação e visualização.
+
+
+![](./modulo_01_algoritimos_img3.png)
+
+**4. Random Forest:**
+
+* **Objetivo:**  Combinar várias árvores de decisão para criar um modelo mais robusto e preciso.
+* **Tipo de Problema:** Classificação e Regressão.
+* **Técnica:** Bagging (Bootstrap Aggregating) e seleção aleatória de features.
+* **Vantagens:**  Reduz overfitting, aumenta a precisão e a robustez.
+* **Exemplo:**  Prever a demanda por um produto com base em dados históricos de vendas e variáveis externas.
+
+**5. Support Vector Machines (SVM):**
+
+* **Objetivo:**  Encontrar o hiperplano que melhor separa as classes no espaço de features.
+* **Tipo de Problema:** Classificação e Regressão.
+* **Margem:** Maximiza a distância entre o hiperplano e os pontos mais próximos de cada classe (vetores de suporte).
+* **Kernel Trick:**  Permite lidar com dados não linearmente separáveis.
+* **Exemplo:**  Classificar imagens médicas como tumorais ou não tumorais.
+
+**6. K-Nearest Neighbors (KNN):**
+
+* **Objetivo:** Classificar uma instância com base na classe dos seus vizinhos mais próximos.
+* **Tipo de Problema:** Classificação e Regressão.
+* **Distância:**  Calcula a distância entre a instância e os pontos no conjunto de dados.
+* **K:**  Número de vizinhos mais próximos a serem considerados.
+* **Exemplo:**  Recomendar produtos a um cliente com base nos produtos comprados por clientes similares.
+
+**7. K-Means:**
+
+* **Objetivo:**  Agrupar dados em clusters (grupos) com base na similaridade entre eles.
+* **Tipo de Problema:** Agrupamento (aprendizado não supervisionado).
+* **Centróides:**  Cada cluster é representado por um centróide (ponto central).
+* **Distância:**  Os pontos são atribuídos ao cluster com o centróide mais próximo.
+* **Exemplo:**  Segmentar clientes em grupos com base em seus dados demográficos e comportamentos de compra.
+
+**8. Redes Neurais:**
+
+* **Objetivo:** Modelar relações complexas entre variáveis, inspiradas no funcionamento do cérebro humano.
+* **Tipo de Problema:** Classificação, Regressão, Processamento de Linguagem Natural, Visão Computacional.
+* **Estrutura:**  Composta por camadas de neurônios interconectados.
+* **Deep Learning:**  Redes neurais com múltiplas camadas ocultas.
+* **Exemplos:**  Reconhecimento facial, tradução automática, carros autônomos.
+
+Essa é uma breve explicação dos algoritmos mais utilizados em Machine Learning. Cada algoritmo possui suas características, vantagens e desvantagens, e a escolha do algoritmo mais adequado depende do problema específico e dos dados disponíveis.
+
+
+#### **Etapas de um projeto de Machine Learning:** Coleta e preparação de dados, seleção de features, escolha do modelo, treinamento, avaliação e otimização.
 
 ![](./ml-engineering_etapas_modulo1_img1.jpg)
+>> Etapas de um projeto
+
+
+Um projeto de Machine Learning bem-sucedido exige uma abordagem estruturada e iterativa. As etapas a seguir descrevem o processo típico, desde a concepção até a otimização do modelo:
+
+**1. Coleta e Preparação de Dados:**
+
+* **Coleta:**
+    * Identificar as fontes de dados relevantes para o problema (ex: bancos de dados, APIs, arquivos CSV).
+    * Coletar os dados, garantindo a qualidade e a representatividade.
+    * Considerar questões éticas e legais, como privacidade e consentimento.
+* **Preparação:**
+    * **Limpeza:** Tratar dados faltantes, outliers e inconsistências.
+    * **Transformação:** Converter dados em um formato adequado para o algoritmo (ex: codificação de variáveis categóricas, normalização).
+    * **Engenharia de Features:** Criar novas features a partir das existentes para melhorar o desempenho do modelo (ex: combinar variáveis, extrair informações relevantes).
+
+![](./modulo_01_etapas_img1.png)
+
+**2. Seleção de Features:**
+
+* **Objetivo:**  Escolher as features mais relevantes para o problema, removendo as irrelevantes ou redundantes.
+* **Benefícios:**
+    * Melhora o desempenho do modelo.
+    * Reduz a complexidade e o tempo de treinamento.
+    * Evita overfitting.
+* **Técnicas:**
+    * Métodos de filtro (correlação, variância).
+    * Métodos wrapper (seleção com base no desempenho do modelo).
+    * Métodos embedded (seleção integrada ao algoritmo).
+
+**3. Escolha do Modelo:**
+
+* **Objetivo:** Selecionar o algoritmo de Machine Learning mais adequado para o problema e os dados.
+* **Fatores a considerar:**
+    * Tipo de problema (classificação, regressão, agrupamento).
+    * Tamanho e complexidade dos dados.
+    * Interpretabilidade do modelo.
+    * Tempo de treinamento.
+* **Exemplos:**  Regressão Linear, Árvores de Decisão, Redes Neurais, SVM, KNN.
+
+**4. Treinamento:**
+
+* **Objetivo:** "Ensinar" o algoritmo a identificar padrões e relações nos dados.
+* **Divisão dos Dados:** Separar os dados em conjuntos de treinamento, validação e teste.
+* **Ajuste de Hiperparâmetros:**  Otimizar os parâmetros do modelo para obter o melhor desempenho.
+* **Técnicas de Otimização:** Gradiente Descendente, Busca em Grade, Otimização Bayesiana.
+
+**5. Avaliação e Otimização:**
+
+* **Objetivo:**  Avaliar o desempenho do modelo e identificar áreas de aprimoramento.
+* **Métricas de Avaliação:**
+    * Classificação: Acurácia, Precisão, Recall, F1-score, AUC.
+    * Regressão: Erro Quadrático Médio (RMSE), Erro Absoluto Médio (MAE).
+* **Técnicas de Validação:**  Validação Cruzada (K-fold), Hold-out.
+* **Otimização:** Ajustar o modelo, os hiperparâmetros ou os dados para melhorar o desempenho.
+* **Iteração:** Repetir as etapas de treinamento e avaliação até atingir o desempenho desejado.
+
+![](./modulo_01_etapas_img2.png)
+
+**Observações:**
+
+* Esse processo é iterativo e pode ser necessário revisitar etapas anteriores à medida que você aprende mais sobre os dados e o problema.
+* A comunicação e a visualização dos resultados são importantes para garantir que o modelo seja compreendido e utilizado de forma eficaz.
+* Ferramentas e plataformas de Machine Learning podem auxiliar na automação e agilização de algumas etapas do processo.
+
 
 ### Módulo 2: Machine Learning no Mundo Empresarial
 
