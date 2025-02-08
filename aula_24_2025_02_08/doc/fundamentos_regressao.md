@@ -11,6 +11,8 @@ Nesta aula, desvendaremos o fascinante universo da regressão, uma das técnicas
 * A área da inteligência artificial que permite aos computadores aprenderem com os dados, sem serem explicitamente programados para isso.
 * Através de algoritmos, os computadores identificam padrões, fazem previsões e tomam decisões, tudo isso com base em exemplos anteriores.
 
+Veja mais sobre [Aprendizagem de Máquina](./introducao_machine_learning.md) 
+
 ### 2. Análise Exploratória de Dados (AED)
 
 * A etapa inicial de todo projeto de Machine Learning.
@@ -61,12 +63,14 @@ Veja mais sobre [Ensemble](./ensemble.md)
 
 * Um tipo de problema de Machine Learning em que o objetivo é prever um valor numérico contínuo.
 * Exemplos: prever o preço de uma casa, a temperatura, as vendas de um produto, etc.
+  
+Veja mais sobre [Regressão: Previsões Numéricas](./regressao_previsao_numerica.md)
 
 #### Tipos de Regressão
 
-* **Regressão Linear**: utilizada quando a relação entre as variáveis é linear.
-* **Regressão Polinomial**: utilizada quando a relação entre as variáveis é não linear.
-* **Regressão Logística**: utilizada para problemas de classificação, apesar do nome.
+* [**Regressão Linear**](./regressao_linear.md): utilizada quando a relação entre as variáveis é linear.
+* [**Regressão Polinomial**](./regressao_polinomial.md): utilizada quando a relação entre as variáveis é não linear.
+* [**Regressão Logística**](./regressao_logistica.md): utilizada para problemas de classificação, apesar do nome.
 
 #### Casos de Uso
 
