@@ -31,19 +31,49 @@
 
 - [Aula 15 - 2024-07-20](./aula_15_2024_07_20/README.md)
 
+- [Aula 16 - 2024-08-17](./aula_18_2024_08_17/README.md)
+
+- [Aula 17 - 2024-08-24](./aula_18_2024_08_24/README.md)
+
+- [Aula 18 - 2024-09-14](./aula_18_2024_09_14/README.md)
+
+- [Aula 19 - 2024-11-09](./aula_18_2024_11_08/README.md)
+
+- [Aula 20 - 2024-12-07](./aula_18_2024_12_07/README.md)
+
+- [Aula 21 - 2024-12-14](./aula_18_2024_12_14/README.md)
+
+- [Aula 22 - 2025-01-18](./aula_18_2025_01_18/README.md)
+
+- [Aula 23 - 2025-01-25](./aula_18_2025_01_25/README.md)
+
+- [Aula 24 - 2025-02-08](./aula_18_2025_02_08/README.md)
+
 ## Livros
 
 * [T-SQL Fundamentals, Fourth Edition.pdf](./doc/T-SQL_Fundamentals_Fourth_Edition.pdf)
 
 * [MySql Comece com o principal banco de dados open source do mercado](./aula_01_2023-12-02/doc/mysql-Comece-com-o-principal-banco-de-dados-open-source-do-mercado.pdf)
+  
 * [Postgresql - Banco de Dados Para Aplicacoes Web Modernas - Casa Do Codigo](./aula_01_2023-12-02/doc/Postgresql-Banco-de-Dados-Para-Aplicacoes-Web-Modernas-Casa-Do-Codigo.pdf)
+  
 * [PLSQL Domine a linguagem do banco de dados Oracle](./aula_01_2023-12-02/doc/PLSQL-Domine-a-linguagem-do-banco-de-dados-Oracle.pdf)
+
 * [Projeto de banco de dados](./aula_01_2023-12-02/doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
+
 * [Fundamentos de Engenharia de Dados](./doc/Fundamentos-Engenharia-de-Dados.pdf)
+
 * [Deep Learning Book](https://www.deeplearningbook.com.br/)
+
 * [Engenharia de Analytics](https://www.engdeanalytics.com.br/intro.html) | [Engenharia de Analytics no GitHub](https://github.com/dpavancini/eng-de-analytics-livro)  
+
 * [Data Science: A First Introduction](https://datasciencebook.ca/)
+
 * [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
+
+* [Learning SQL](./aula_05_2024-02-17/doc/Learning_SQL_1.pdf)
+
+* [The Data Warehouse Toolkit](./aula_07_2024-03-16/doc/The_Data_Warehouse_Toolkit.pdf)
 
 ## Artigos
 
