@@ -31,23 +31,23 @@
 
 - [Aula 15 - 2024-07-20](./aula_15_2024_07_20/README.md)
 
-- [Aula 16 - 2024-08-17](./aula_18_2024_08_17/README.md)
+- [Aula 16 - 2024-08-17](./aula_16_2024_08_17/README.md)
 
-- [Aula 17 - 2024-08-24](./aula_18_2024_08_24/README.md)
+- [Aula 17 - 2024-08-24](./aula_17_2024_08_24/README.md)
 
 - [Aula 18 - 2024-09-14](./aula_18_2024_09_14/README.md)
 
-- [Aula 19 - 2024-11-09](./aula_18_2024_11_08/README.md)
+- [Aula 19 - 2024-11-09](./aula_19_2024_11_08/README.md)
 
-- [Aula 20 - 2024-12-07](./aula_18_2024_12_07/README.md)
+- [Aula 20 - 2024-12-07](./aula_20_2024_12_07/README.md)
 
-- [Aula 21 - 2024-12-14](./aula_18_2024_12_14/README.md)
+- [Aula 21 - 2024-12-14](./aula_21_2024_12_14/README.md)
 
-- [Aula 22 - 2025-01-18](./aula_18_2025_01_18/README.md)
+- [Aula 22 - 2025-01-18](./aula_22_2025_01_18/README.md)
 
-- [Aula 23 - 2025-01-25](./aula_18_2025_01_25/README.md)
+- [Aula 23 - 2025-01-25](./aula_23_2025_01_25/README.md)
 
-- [Aula 24 - 2025-02-08](./aula_18_2025_02_08/README.md)
+- [Aula 24 - 2025-02-08](./aula_24_2025_02_08/README.md)
 
 ## Livros
 
