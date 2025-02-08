@@ -1,4 +1,4 @@
-# Aula 23 IA Generativa e Processamento de Linguagem Natural 2025-01-25
+# Aula 24 Machine Learning 2025-02-08
 
 
 - [Anotações](anotacoes.md)

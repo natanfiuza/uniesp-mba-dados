@@ -1,8 +1,7 @@
-# Aula 23 IA Generativa e Processamento de Linguagem Natural 2025-01-25
+# Aula 24 Machine Learning 2025-02-08
 
 ## Índice 
 
-- [A Metamorfose do RH - De 1985 aos Dias Atuais](./doc/rh_de_1985_ate_hoje.md)
 
 ## Links
 
