@@ -61,7 +61,7 @@
 
 * [Projeto de banco de dados](./aula_01_2023-12-02/doc/Projeto%20de%20Banco%20de%20Dados%20-%20C.%20A.%20Heuser.pdf)
 
-* [Fundamentos de Engenharia de Dados](./doc/Fundamentos-Engenharia-de-Dados.pdf)
+* [Fundamentos de Engenharia de Dados](./aula_15_2024_07_20/doc/Fundamentos-Engenharia-de-Dados.pdf)
 
 * [Deep Learning Book](https://www.deeplearningbook.com.br/)
 
@@ -74,6 +74,13 @@
 * [Learning SQL](./aula_05_2024-02-17/doc/Learning_SQL_1.pdf)
 
 * [The Data Warehouse Toolkit](./aula_07_2024-03-16/doc/The_Data_Warehouse_Toolkit.pdf)
+
+* [Melhores práticas de consulta para o Amazon Redshift - AWS Orientação prescritiva](./aula_14_2024_07_06/doc/query-best-practices-redshift.pdf)
+
+* [Data Science para Negocios](./aula_17_2024_08_24/doc/data_science_para_negocios.pdf)
+
+* [Etendendo Algoritimos](./aula_17_2024_08_24/doc/Entendendo_Algoritmos_by_Aditya_Y_Bharga.pdf)
+
 
 ## Artigos
 
