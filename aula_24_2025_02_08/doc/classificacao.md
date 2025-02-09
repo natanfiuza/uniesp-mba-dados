@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Olá, Cientistas de Dados! Hoje, vamos mergulhar em um dos pilares fundamentais do Machine Learning: a **Classificação**. Em essência, a classificação é a arte de ensinar um computador a categorizar dados. Imaginem que vocês têm um cesto cheio de frutas e querem que um robô aprenda a separar maçãs de laranjas. Isso é, em sua forma mais simples, um problema de classificação.
+Em essência, a classificação é a arte de ensinar um computador a categorizar dados. Imaginem que vocês têm um cesto cheio de frutas e querem que um robô aprenda a separar maçãs de laranjas. Isso é, em sua forma mais simples, um problema de classificação.
 
 ## Conceitos Básicos
 
